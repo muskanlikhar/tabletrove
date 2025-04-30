@@ -9,88 +9,59 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #fff;
-    }
-    h1 {
-      text-align: center;
-      padding: 20px;
-    }
-    .menu-section {
-      padding: 40px;
-    }
-    .menu-title {
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #a02c2c;
     }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px;
+      padding: 20px;
     }
     .item-card {
       background: #f8f8f8;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-bottom: 15px;
+      text-align: center;
     }
     .item-card img {
       width: 100%;
       height: 160px;
       object-fit: cover;
     }
-    .item-info {
-      padding: 10px;
-      text-align: center;
-    }
-    .item-info h3 {
-      margin: 10px 0 5px;
-      font-size: 18px;
-    }
-    .item-info p {
-      margin: 0;
-      color: #555;
-    }
     .item-card button {
-      margin-top: 10px;
-      padding: 8px 20px;
-      background: #a02c2c;
-      color: #fff;
+      background-color: #a02c2c;
+      color: white;
+      padding: 8px 16px;
+      margin: 10px;
       border: none;
-      border-radius: 4px;
+      border-radius: 5px;
       cursor: pointer;
     }
     .item-card button:hover {
-      background: #800000;
+      background-color: #800000;
     }
-    /* Modal styling */
     .modal {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
       justify-content: center;
       align-items: center;
+      z-index: 999;
     }
     .modal-content {
-      background: #fff;
+      background: white;
       padding: 20px;
       width: 90%;
       max-width: 500px;
       border-radius: 10px;
       position: relative;
     }
-    .modal-content h3 {
-      margin-top: 0;
-    }
     .close-btn {
       position: absolute;
-      top: 10px; right: 15px;
+      top: 10px;
+      right: 15px;
       font-size: 20px;
       cursor: pointer;
       color: #a02c2c;
@@ -99,69 +70,27 @@
 </head>
 <body>
 
-<h1>Our Menu</h1>
+<h1 style="text-align:center;">Our Menu</h1>
 
-<!-- Veg Dishes Section -->
-<div class="menu-section">
-  <h2 class="menu-title">🌿 Veg Dishes</h2>
-  <div class="grid">
+<div class="grid">
+  <!-- Veg item -->
+  <div class="item-card">
+    <img src="https://source.unsplash.com/300x200/?paneer" />
+    <h3>Paneer Butter Masala</h3>
+    <p>₹220</p>
+    <button onclick="showDescription('Paneer Butter Masala', 'Paneer, butter, tomato, cream, spices', 'Sauté tomatoes and spices, blend, cook with paneer and cream.', 'Calories: 320, Protein: 14g, Fat: 22g')">Description</button>
+  </div>
 
-    <!-- Item 1: Paneer Butter Masala -->
-    <div class="item-card">
-      <img src="https://source.unsplash.com/300x200/?paneer" alt="Paneer Butter Masala" />
-      <div class="item-info">
-        <h3>Paneer Butter Masala</h3>
-        <p>₹220</p>
-        <button onclick="showDescription('Paneer Butter Masala', 'Paneer, butter, tomatoes, cream, spices', 'Sauté onions and tomatoes, blend into a puree. Cook with butter and spices, add paneer cubes and cream.', 'Calories: 635 kcal, Protein: 20.4g, Fat: 48.2g, Carbs: 29.5g')">Description</button>
-      </div>
-    </div>
-
-    <!-- Item 2: Veg Biryani -->
-    <div class="item-card">
-      <img src="https://source.unsplash.com/300x200/?veg-biryani" alt="Veg Biryani" />
-      <div class="item-info">
-        <h3>Veg Biryani</h3>
-        <p>₹180</p>
-        <button onclick="showDescription('Veg Biryani', 'Basmati rice, mixed vegetables, yogurt, spices, saffron', 'Marinate vegetables in spiced yogurt. Layer with partially cooked rice and saffron milk. Cook on low heat.', 'Calories: 303 kcal, Protein: 7g, Fat: 4.7g, Carbs: 65g')">Description</button>
-      </div>
-    </div>
-
-    <!-- Item 3: Chole Bhature -->
-    <div class="item-card">
-      <img src="https://source.unsplash.com/300x200/?chole-bhature" alt="Chole Bhature" />
-      <div class="item-info">
-        <h3>Chole Bhature</h3>
-        <p>₹150</p>
-        <button onclick="showDescription('Chole Bhature', 'Chickpeas, flour, yogurt, spices', 'Cook chickpeas with spices to make chole. Prepare dough with flour and yogurt, roll and deep-fry to make bhature.', 'Calories: 427 kcal, Protein: 12g, Fat: 15g, Carbs: 60g')">Description</button>
-      </div>
-    </div>
-
-    <!-- Item 4: Palak Paneer -->
-    <div class="item-card">
-      <img src="https://source.unsplash.com/300x200/?palak-paneer" alt="Palak Paneer" />
-      <div class="item-info">
-        <h3>Palak Paneer</h3>
-        <p>₹200</p>
-        <button onclick="showDescription('Palak Paneer', 'Spinach, paneer, onions, tomatoes, spices', 'Blanch spinach and blend into a puree. Sauté onions and tomatoes, add spices and spinach puree. Add paneer cubes and simmer.', 'Calories: 300 kcal, Protein: 15g, Fat: 20g, Carbs: 15g')">Description</button>
-      </div>
-    </div>
-
-    <!-- Item 5: Aloo Gobi -->
-    <div class="item-card">
-      <img src="https://source.unsplash.com/300x200/?aloo-gobi" alt="Aloo Gobi" />
-      <div class="item-info">
-        <h3>Aloo Gobi</h3>
-        <p>₹180</p>
-        <button onclick="showDescription('Aloo Gobi', 'Potatoes, cauliflower, onions, tomatoes, spices', 'Sauté onions and tomatoes with spices. Add potatoes and cauliflower, cook until tender.', 'Calories: 250 kcal, Protein: 5g, Fat: 10g, Carbs: 35g')">Description</button>
-      </div>
-    </div>
-
-    <!-- Continue adding items up to 40 -->
-
+  <!-- Non-Veg item -->
+  <div class="item-card">
+    <img src="https://source.unsplash.com/300x200/?chicken-biryani" />
+    <h3>Chicken Biryani</h3>
+    <p>₹250</p>
+    <button onclick="showDescription('Chicken Biryani', 'Chicken, rice, saffron, yogurt, spices', 'Marinate chicken, layer with rice, cook on dum.', 'Calories: 450, Protein: 25g, Fat: 18g')">Description</button>
   </div>
 </div>
 
-<!-- Modal Template -->
+<!-- Modal -->
 <div class="modal" id="descModal">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -175,10 +104,10 @@
 <!-- Script -->
 <script>
   function showDescription(title, ingredients, recipe, nutrition) {
-    document.getElementById("modal-title").textContent = title;
-    document.getElementById("modal-ingredients").textContent = ingredients;
-    document.getElementById("modal-recipe").textContent = recipe;
-    document.getElementById("modal-nutrition").textContent = nutrition;
+    document.getElementById("modal-title").innerText = title;
+    document.getElementById("modal-ingredients").innerText = ingredients;
+    document.getElementById("modal-recipe").innerText = recipe;
+    document.getElementById("modal-nutrition").innerText = nutrition;
     document.getElementById("descModal").style.display = "flex";
   }
 
