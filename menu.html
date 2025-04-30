@@ -1,1 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Menu - TableTrove</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f8f8f8; }
+h1, h2 { text-align: center; color: #2c3e50; }
+.category-buttons { text-align: center; margin-bottom: 20px; }
+.category-buttons button { background-color: #e67e22; color: white; padding: 10px 20px; margin: 10px; border: none; border-radius: 6px; cursor: pointer; }
+.category-buttons button:hover { background-color: #d35400; }
+.grid { display: none; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; padding: 20px; }
+.item-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; }
+.item-card img { width: 100%; height: 160px; object-fit: cover; }
+.item-card button { background-color: #a02c2c; color: white; padding: 8px 16px; margin: 10px; border: none; border-radius: 5px; cursor: pointer; }
+.item-card button:hover { background-color: #800000; }
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 999; }
+.modal-content { background: white; padding: 20px; width: 90%; max-width: 500px; border-radius: 10px; position: relative; }
+.close-btn { position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; color: #a02c2c; }
+</style>
+</head>
+<body>
+<h1>Our Menu</h1>
+<h2>Select a Category</h2>
+<div class="category-buttons">
+  <button onclick="showCategory('veg')">Veg</button>
+  <button onclick="showCategory('nonveg')">Non-Veg</button>
+</div>
+<div class="grid" id="veg">
+
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Paneer+Butter+Masala" />
+            <h3>Paneer Butter Masala</h3>
+            <p>₹220</p>
+            <button onclick="showDescription('Paneer Butter Masala', 'Paneer, butter, tomato puree, cream, spices', 'Paneer cubes in a rich, creamy tomato-based gravy.', 'Calories: 340, Protein: 14g, Fat: 22g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Margherita+Pizza" />
+            <h3>Margherita Pizza</h3>
+            <p>₹280</p>
+            <button onclick="showDescription('Margherita Pizza', 'Tomato, mozzarella, basil, olive oil', 'Classic Italian pizza with fresh toppings.', 'Calories: 290, Protein: 12g, Fat: 10g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Vegetable+Lasagna" />
+            <h3>Vegetable Lasagna</h3>
+            <p>₹320</p>
+            <button onclick="showDescription('Vegetable Lasagna', 'Pasta sheets, cheese, vegetables, tomato sauce', 'Layered baked pasta with creamy veggie filling.', 'Calories: 410, Protein: 16g, Fat: 18g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Dal+Tadka" />
+            <h3>Dal Tadka</h3>
+            <p>₹180</p>
+            <button onclick="showDescription('Dal Tadka', 'Yellow lentils, ghee, garlic, cumin', 'Tempered lentils with spices and ghee.', 'Calories: 250, Protein: 10g, Fat: 12g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Veggie+Burger" />
+            <h3>Veggie Burger</h3>
+            <p>₹200</p>
+            <button onclick="showDescription('Veggie Burger', 'Patty, bun, lettuce, tomato, cheese', 'Grilled vegetable patty in a soft bun.', 'Calories: 330, Protein: 9g, Fat: 15g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Chole+Bhature" />
+            <h3>Chole Bhature</h3>
+            <p>₹240</p>
+            <button onclick="showDescription('Chole Bhature', 'Chickpeas, flour, spices', 'Spiced chickpeas served with deep-fried bread.', 'Calories: 460, Protein: 13g, Fat: 20g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Pav+Bhaji" />
+            <h3>Pav Bhaji</h3>
+            <p>₹200</p>
+            <button onclick="showDescription('Pav Bhaji', 'Mixed vegetables, butter, pav bread', 'Spiced mashed vegetables with buttered buns.', 'Calories: 380, Protein: 10g, Fat: 18g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Veg+Sushi+Roll" />
+            <h3>Veg Sushi Roll</h3>
+            <p>₹300</p>
+            <button onclick="showDescription('Veg Sushi Roll', 'Rice, seaweed, cucumber, avocado', 'Japanese-style vegetable sushi rolls.', 'Calories: 240, Protein: 5g, Fat: 6g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Palak+Paneer" />
+            <h3>Palak Paneer</h3>
+            <p>₹210</p>
+            <button onclick="showDescription('Palak Paneer', 'Spinach, paneer, cream, spices', 'Paneer in a creamy spinach gravy.', 'Calories: 300, Protein: 13g, Fat: 15g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Vegetable+Fried+Rice" />
+            <h3>Vegetable Fried Rice</h3>
+            <p>₹190</p>
+            <button onclick="showDescription('Vegetable Fried Rice', 'Rice, carrots, beans, soy sauce', 'Chinese-style stir-fried rice with vegetables.', 'Calories: 310, Protein: 8g, Fat: 10g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Masala+Dosa" />
+            <h3>Masala Dosa</h3>
+            <p>₹170</p>
+            <button onclick="showDescription('Masala Dosa', 'Rice batter, potato, spices', 'Crispy dosa filled with spiced mashed potatoes.', 'Calories: 320, Protein: 7g, Fat: 12g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Greek+Salad" />
+            <h3>Greek Salad</h3>
+            <p>₹230</p>
+            <button onclick="showDescription('Greek Salad', 'Tomatoes, cucumber, olives, feta', 'Fresh salad with a Mediterranean twist.', 'Calories: 200, Protein: 6g, Fat: 14g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Rajma+Chawal" />
+            <h3>Rajma Chawal</h3>
+            <p>₹180</p>
+            <button onclick="showDescription('Rajma Chawal', 'Kidney beans, rice, spices', 'Punjabi-style rajma served with rice.', 'Calories: 290, Protein: 9g, Fat: 8g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Gnocchi+with+Pesto" />
+            <h3>Gnocchi with Pesto</h3>
+            <p>₹260</p>
+            <button onclick="showDescription('Gnocchi with Pesto', 'Potato gnocchi, basil pesto', 'Soft dumplings in Italian basil sauce.', 'Calories: 370, Protein: 11g, Fat: 16g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Vegetable+Manchurian" />
+            <h3>Vegetable Manchurian</h3>
+            <p>₹220</p>
+            <button onclick="showDescription('Vegetable Manchurian', 'Veg balls, soy sauce, garlic', 'Indo-Chinese dish with spicy sauce.', 'Calories: 330, Protein: 7g, Fat: 14g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Caprese+Sandwich" />
+            <h3>Caprese Sandwich</h3>
+            <p>₹240</p>
+            <button onclick="showDescription('Caprese Sandwich', 'Mozzarella, tomato, basil, ciabatta', 'Fresh and light Italian-style sandwich.', 'Calories: 310, Protein: 10g, Fat: 12g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Stuffed+Paratha" />
+            <h3>Stuffed Paratha</h3>
+            <p>₹160</p>
+            <button onclick="showDescription('Stuffed Paratha', 'Wheat flour, potato, butter', 'North Indian flatbread stuffed with potato.', 'Calories: 280, Protein: 6g, Fat: 12g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Falafel+Wrap" />
+            <h3>Falafel Wrap</h3>
+            <p>₹250</p>
+            <button onclick="showDescription('Falafel Wrap', 'Chickpeas, tahini, vegetables', 'Middle Eastern wrap with falafel and salad.', 'Calories: 350, Protein: 13g, Fat: 14g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Vegetarian+Ramen" />
+            <h3>Vegetarian Ramen</h3>
+            <p>₹270</p>
+            <button onclick="showDescription('Vegetarian Ramen', 'Noodles, miso broth, tofu, veggies', 'Japanese noodle soup with vegetarian broth.', 'Calories: 400, Protein: 14g, Fat: 17g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Veg+Biryani" />
+            <h3>Veg Biryani</h3>
+            <p>₹230</p>
+            <button onclick="showDescription('Veg Biryani', 'Basmati rice, spices, vegetables', 'Aromatic rice cooked with spiced veggies.', 'Calories: 370, Protein: 8g, Fat: 14g')">Description</button>
+        </div>
+        
+</div>
+<div class="grid" id="nonveg">
+
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Chicken+Biryani" />
+            <h3>Chicken Biryani</h3>
+            <p>₹280</p>
+            <button onclick="showDescription('Chicken Biryani', 'Chicken, rice, saffron, spices', 'Layered rice with marinated chicken and spices.', 'Calories: 470, Protein: 25g, Fat: 22g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Butter+Chicken" />
+            <h3>Butter Chicken</h3>
+            <p>₹290</p>
+            <button onclick="showDescription('Butter Chicken', 'Chicken, tomato, butter, cream', 'Tandoori chicken in creamy tomato sauce.', 'Calories: 480, Protein: 26g, Fat: 24g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Grilled+Chicken+Salad" />
+            <h3>Grilled Chicken Salad</h3>
+            <p>₹260</p>
+            <button onclick="showDescription('Grilled Chicken Salad', 'Chicken, lettuce, olive oil, herbs', 'Healthy salad with grilled chicken breast.', 'Calories: 310, Protein: 23g, Fat: 10g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Fish+and+Chips" />
+            <h3>Fish and Chips</h3>
+            <p>₹320</p>
+            <button onclick="showDescription('Fish and Chips', 'Fish fillet, potatoes, batter', 'Classic British deep-fried fish and fries.', 'Calories: 520, Protein: 21g, Fat: 28g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Chicken+Shawarma" />
+            <h3>Chicken Shawarma</h3>
+            <p>₹250</p>
+            <button onclick="showDescription('Chicken Shawarma', 'Chicken, pita, garlic sauce', 'Middle Eastern wrap with grilled chicken.', 'Calories: 430, Protein: 22g, Fat: 18g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Egg+Curry" />
+            <h3>Egg Curry</h3>
+            <p>₹200</p>
+            <button onclick="showDescription('Egg Curry', 'Boiled eggs, spices, onion gravy', 'North Indian curry with boiled eggs.', 'Calories: 350, Protein: 14g, Fat: 16g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Mutton+Rogan+Josh" />
+            <h3>Mutton Rogan Josh</h3>
+            <p>₹330</p>
+            <button onclick="showDescription('Mutton Rogan Josh', 'Mutton, yogurt, Kashmiri spices', 'Spicy mutton curry from Kashmir.', 'Calories: 500, Protein: 28g, Fat: 30g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Tandoori+Chicken" />
+            <h3>Tandoori Chicken</h3>
+            <p>₹270</p>
+            <button onclick="showDescription('Tandoori Chicken', 'Chicken, yogurt, spices', 'Marinated chicken grilled in a tandoor.', 'Calories: 390, Protein: 30g, Fat: 14g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Shrimp+Pasta+Alfredo" />
+            <h3>Shrimp Pasta Alfredo</h3>
+            <p>₹340</p>
+            <button onclick="showDescription('Shrimp Pasta Alfredo', 'Shrimp, pasta, cream, cheese', 'Pasta in white sauce with shrimp.', 'Calories: 520, Protein: 24g, Fat: 26g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Chicken+Tikka+Masala" />
+            <h3>Chicken Tikka Masala</h3>
+            <p>₹300</p>
+            <button onclick="showDescription('Chicken Tikka Masala', 'Chicken, tomato, cream, masala', 'Grilled chicken in spiced curry sauce.', 'Calories: 460, Protein: 25g, Fat: 22g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Lamb+Kebab" />
+            <h3>Lamb Kebab</h3>
+            <p>₹310</p>
+            <button onclick="showDescription('Lamb Kebab', 'Ground lamb, spices, skewer', 'Minced lamb grilled on skewers.', 'Calories: 420, Protein: 24g, Fat: 23g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Bacon+Cheeseburger" />
+            <h3>Bacon Cheeseburger</h3>
+            <p>₹350</p>
+            <button onclick="showDescription('Bacon Cheeseburger', 'Beef patty, bacon, cheese, bun', 'Juicy American-style burger.', 'Calories: 610, Protein: 30g, Fat: 35g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Chicken+Pad+Thai" />
+            <h3>Chicken Pad Thai</h3>
+            <p>₹280</p>
+            <button onclick="showDescription('Chicken Pad Thai', 'Rice noodles, chicken, peanuts', 'Thai stir-fried noodles with chicken.', 'Calories: 440, Protein: 22g, Fat: 16g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Fish+Curry+(Bengali)" />
+            <h3>Fish Curry (Bengali)</h3>
+            <p>₹290</p>
+            <button onclick="showDescription('Fish Curry (Bengali)', 'Fish, mustard, tomato, spices', 'Traditional Bengali mustard fish curry.', 'Calories: 380, Protein: 21g, Fat: 14g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Mutton+Biryani" />
+            <h3>Mutton Biryani</h3>
+            <p>₹340</p>
+            <button onclick="showDescription('Mutton Biryani', 'Mutton, rice, spices, saffron', 'Royal biryani cooked on dum.', 'Calories: 520, Protein: 29g, Fat: 28g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Korean+Fried+Chicken" />
+            <h3>Korean Fried Chicken</h3>
+            <p>₹310</p>
+            <button onclick="showDescription('Korean Fried Chicken', 'Chicken, soy garlic glaze', 'Crispy Korean-style fried chicken.', 'Calories: 490, Protein: 27g, Fat: 25g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Grilled+Salmon" />
+            <h3>Grilled Salmon</h3>
+            <p>₹360</p>
+            <button onclick="showDescription('Grilled Salmon', 'Salmon, herbs, lemon', 'Lightly grilled with herbs and olive oil.', 'Calories: 410, Protein: 32g, Fat: 20g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Beef+Steak" />
+            <h3>Beef Steak</h3>
+            <p>₹400</p>
+            <button onclick="showDescription('Beef Steak', 'Beef, garlic butter, herbs', 'Juicy grilled steak to order.', 'Calories: 580, Protein: 35g, Fat: 32g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Chicken+Dumplings" />
+            <h3>Chicken Dumplings</h3>
+            <p>₹240</p>
+            <button onclick="showDescription('Chicken Dumplings', 'Chicken mince, flour, soy sauce', 'Steamed momo-style dumplings.', 'Calories: 300, Protein: 16g, Fat: 12g')">Description</button>
+        </div>
+        
+        <div class="item-card">
+            <img src="https://via.placeholder.com/300x200?text=Egg+Fried+Rice" />
+            <h3>Egg Fried Rice</h3>
+            <p>₹220</p>
+            <button onclick="showDescription('Egg Fried Rice', 'Eggs, rice, vegetables, soy sauce', 'Chinese-style rice stir-fried with egg.', 'Calories: 360, Protein: 10g, Fat: 14g')">Description</button>
+        </div>
+        
+</div>
+<div class="modal" id="descModal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h3 id="modal-title"></h3>
+    <p><strong>Ingredients:</strong> <span id="modal-ingredients"></span></p>
+    <p><strong>Recipe:</strong> <span id="modal-recipe"></span></p>
+    <p><strong>Nutrition:</strong> <span id="modal-nutrition"></span></p>
+  </div>
+</div>
+<script>
+function showCategory(category) {
+  document.getElementById("veg").style.display = category === 'veg' ? 'grid' : 'none';
+  document.getElementById("nonveg").style.display = category === 'nonveg' ? 'grid' : 'none';
+}
+function showDescription(title, ingredients, recipe, nutrition) {
+  document.getElementById("modal-title").innerText = title;
+  document.getElementById("modal-ingredients").innerText = ingredients;
+  document.getElementById("modal-recipe").innerText = recipe;
+  document.getElementById("modal-nutrition").innerText = nutrition;
+  document.getElementById("descModal").style.display = "flex";
+}
+function closeModal() {
+  document.getElementById("descModal").style.display = "none";
+}
+window.onload = () => {
+  document.getElementById("veg").style.display = "none";
+  document.getElementById("nonveg").style.display = "none";
+};
+</script>
+</body>
+</html>
 
