@@ -2,59 +2,184 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Menu - TableTrove</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }
+    h1 {
+      text-align: center;
+      padding: 20px;
+    }
+    .menu-section {
+      padding: 40px;
+    }
+    .menu-title {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #a02c2c;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .item-card {
+      background: #f8f8f8;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 15px;
+    }
+    .item-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .item-info {
+      padding: 10px;
+      text-align: center;
+    }
+    .item-info h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+    }
+    .item-info p {
+      margin: 0;
+      color: #555;
+    }
+    .item-card button {
+      margin-top: 10px;
+      padding: 8px 20px;
+      background: #a02c2c;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .item-card button:hover {
+      background: #800000;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal form {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h2>Menu</h2>
-  <div>
-    <button onclick="showCategory('veg')">Veg</button>
-    <button onclick="showCategory('nonveg')">Non-Veg</button>
+
+<h1>Our Menu</h1>
+<!-- VEG SECTION -->
+<div class="menu-section">
+  <h2 class="menu-title">🌿 Veg Dishes</h2>
+  <div class="grid">
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?paneer" /><div class="item-info"><h3>Paneer Butter Masala</h3><p>₹220</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?veg-biryani" /><div class="item-info"><h3>Veg Biryani</h3><p>₹180</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?palak-paneer" /><div class="item-info"><h3>Palak Paneer</h3><p>₹200</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?aloo-gobi" /><div class="item-info"><h3>Aloo Gobi</h3><p>₹160</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?dal" /><div class="item-info"><h3>Dal Makhani</h3><p>₹150</p><button onclick="openForm()">Book Now</button></div></div>
+
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chole" /><div class="item-info"><h3>Chole Bhature</h3><p>₹170</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?veg-pulao" /><div class="item-info"><h3>Veg Pulao</h3><p>₹140</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?mushroom" /><div class="item-info"><h3>Mushroom Masala</h3><p>₹190</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?paneer-tikka" /><div class="item-info"><h3>Paneer Tikka</h3><p>₹210</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?hakka-noodles" /><div class="item-info"><h3>Hakka Noodles</h3><p>₹160</p><button onclick="openForm()">Book Now</button></div></div>
+
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?spring-roll" /><div class="item-info"><h3>Veg Spring Roll</h3><p>₹130</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?malai-kofta" /><div class="item-info"><h3>Malai Kofta</h3><p>₹200</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?kadai-paneer" /><div class="item-info"><h3>Kadai Paneer</h3><p>₹190</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?bhindi" /><div class="item-info"><h3>Bhindi Masala</h3><p>₹150</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?mix-veg" /><div class="item-info"><h3>Mix Veg Curry</h3><p>₹170</p><button onclick="openForm()">Book Now</button></div></div>
+
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?rajma" /><div class="item-info"><h3>Rajma Chawal</h3><p>₹160</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?paratha" /><div class="item-info"><h3>Stuffed Paratha</h3><p>₹140</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?manchurian" /><div class="item-info"><h3>Veg Manchurian</h3><p>₹170</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?tandoori-aloo" /><div class="item-info"><h3>Tandoori Aloo</h3><p>₹160</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?corn" /><div class="item-info"><h3>Corn Cheese Balls</h3><p>₹150</p><button onclick="openForm()">Book Now</button></div></div>
   </div>
+</div>
 
-  <div id="menuItems"></div>
+<!-- NON-VEG SECTION -->
+<div class="menu-section">
+  <h2 class="menu-title">🍗 Non-Veg Dishes</h2>
+  <div class="grid">
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-biryani" /><div class="item-info"><h3>Chicken Biryani</h3><p>₹250</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?butter-chicken" /><div class="item-info"><h3>Butter Chicken</h3><p>₹280</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?mutton" /><div class="item-info"><h3>Mutton Rogan Josh</h3><p>₹320</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-masala" /><div class="item-info"><h3>Chicken Tikka Masala</h3><p>₹270</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?fish-curry" /><div class="item-info"><h3>Fish Curry</h3><p>₹290</p><button onclick="openForm()">Book Now</button></div></div>
 
-  <script>
-    const dishes = {
-      veg: [
-        {
-          name: "Paneer Butter Masala",
-          img: "https://via.placeholder.com/150",
-          detail: "Ingredients, Recipe, Nutrition info..."
-        },
-        {
-          name: "Veg Biryani",
-          img: "https://via.placeholder.com/150",
-          detail: "Ingredients, Recipe, Nutrition info..."
-        }
-      ],
-      nonveg: [
-        {
-          name: "Chicken Curry",
-          img: "https://via.placeholder.com/150",
-          detail: "Ingredients, Recipe, Nutrition info..."
-        },
-        {
-          name: "Fish Fry",
-          img: "https://via.placeholder.com/150",
-          detail: "Ingredients, Recipe, Nutrition info..."
-        }
-      ]
-    };
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-korma" /><div class="item-info"><h3>Chicken Korma</h3><p>₹260</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?egg-curry" /><div class="item-info"><h3>Egg Curry</h3><p>₹190</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?keema" /><div class="item-info"><h3>Mutton Keema</h3><p>₹310</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?tandoori-chicken" /><div class="item-info"><h3>Tandoori Chicken</h3><p>₹280</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-65" /><div class="item-info"><h3>Chicken 65</h3><p>₹240</p><button onclick="openForm()">Book Now</button></div></div>
 
-    function showCategory(type) {
-      const container = document.getElementById("menuItems");
-      container.innerHTML = "";
-      dishes[type].forEach((dish) => {
-        const card = document.createElement("div");
-        card.innerHTML = `
-          <img src="${dish.img}" alt="${dish.name}" />
-          <h3>${dish.name}</h3>
-          <button onclick="alert('${dish.detail}')">About Dish</button>
-        `;
-        container.appendChild(card);
-      });
-    }
-  </script>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?prawns" /><div class="item-info"><h3>Prawn Masala</h3><p>₹300</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-lollipop" /><div class="item-info"><h3>Chicken Lollipop</h3><p>₹210</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?mutton-biryani" /><div class="item-info"><h3>Mutton Biryani</h3><p>₹330</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?shawarma" /><div class="item-info"><h3>Chicken Shawarma</h3><p>₹180</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?fish-tikka" /><div class="item-info"><h3>Fish Tikka</h3><p>₹290</p><button onclick="openForm()">Book Now</button></div></div>
+
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?egg-biryani" /><div class="item-info"><h3>Egg Biryani</h3><p>₹220</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-noodles" /><div class="item-info"><h3>Chicken Noodles</h3><p>₹190</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-soup" /><div class="item-info"><h3>Chicken Soup</h3><p>₹150</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?grilled-chicken" /><div class="item-info"><h3>Grilled Chicken</h3><p>₹260</p><button onclick="openForm()">Book Now</button></div></div>
+    <div class="item-card"><img src="https://source.unsplash.com/300x200/?fried-rice" /><div class="item-info"><h3>Chicken Fried Rice</h3><p>₹200</p><button onclick="openForm()">Book Now</button></div></div>
+  </div>
+</div>
+<!-- Booking Modal -->
+<div id="bookingForm" class="modal" style="display: none;">
+  <form id="booking-form">
+    <h3>Book Your Table</h3>
+    <input type="text" placeholder="Name" required id="name" />
+    <input type="tel" placeholder="Contact" required id="contact" />
+    <input type="date" required id="date" />
+    <input type="number" placeholder="Number of Guests" required id="guests" />
+    <button type="submit">Submit</button>
+    <button type="button" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<!-- Booking Script -->
+<script>
+  function openForm() {
+    document.getElementById("bookingForm").style.display = "flex";
+  }
+
+  function closeForm() {
+    document.getElementById("bookingForm").style.display = "none";
+  }
+
+  // Optional: Handle booking submission
+  document.getElementById("booking-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    alert("Thank you! Your table has been booked.");
+    document.getElementById("booking-form").reset();
+    closeForm();
+  });
+</script>
+
 </body>
 </html>
