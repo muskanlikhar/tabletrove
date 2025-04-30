@@ -2,23 +2,19 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/fireba
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyB66c4IOFIYugi-vwboYk1GqPOEQrI7mXA",
+  authDomain: "tabletrove-5d8a2.firebaseapp.com",
+  projectId: "tabletrove-5d8a2",
+  storageBucket: "tabletrove-5d8a2.appspot.com",
+  messagingSenderId: "60366621653",
+  appId: "1:60366621653:web:01dcff1f23e71640f10b5c"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const form = document.getElementById("form");
+const form = document.getElementById("booking-form");
 const bookingForm = document.getElementById("bookingForm");
-
-function openForm() {
-  bookingForm.style.display = "flex";
-}
 
 function closeForm() {
   bookingForm.style.display = "none";
@@ -36,11 +32,13 @@ form.addEventListener("submit", async (e) => {
       name,
       contact,
       date,
-      guests
+      guests,
+      status: "pending"
     });
-    alert("Booking submitted successfully!");
+    alert("✅ Booking submitted successfully!");
+    form.reset();
     closeForm();
   } catch (error) {
-    alert("Error saving booking: " + error.message);
+    alert("❌ Error saving booking: " + error.message);
   }
 });
