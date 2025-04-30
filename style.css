@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #fff0f5, #ffe4e1);
+  color: #333;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ff6f61;
+  color: white;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+.site-title {
+  flex: 1;
+  text-align: center;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.slogan {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  color: #fffde7;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+}
+
+button {
+  background: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+section {
+  padding: 30px;
+}
+
+.dish-carousel {
+  display: flex;
+  overflow-x: scroll;
+  gap: 10px;
+  animation: slideIn 10s linear infinite;
+}
+
+.dish-carousel img {
+  width: 150px;
+  border-radius: 12px;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.7);
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

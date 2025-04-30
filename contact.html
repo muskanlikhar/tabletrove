@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us - TableTrove</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Contact Us</h2>
+  <form id="contact-form">
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="email" id="email" placeholder="Your Email" required />
+    <textarea id="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js"></script>
+
+  <!-- Firebase Config and Contact Form Script -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB66c4IOFIYugi-vwboYk1GqPOEQrI7mXA",
+      authDomain: "tabletrove-5d8a2.firebaseapp.com",
+      projectId: "tabletrove-5d8a2",
+      storageBucket: "tabletrove-5d8a2.appspot.com",
+      messagingSenderId: "60366621653",
+      appId: "1:60366621653:web:01dcff1f23e71640f10b5c",
+      measurementId: "G-EYKJ7R9439"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    firebase.analytics();
+
+    const contactForm = document.getElementById("contact-form");
+
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+
+      db.collection("contacts").add({
+        name,
+        email,
+        message,
+        date: new Date().toISOString()
+      })
+      .then(() => {
+        alert("✅ Message sent successfully!");
+        contactForm.reset();
+      })
+      .catch((error) => {
+        console.error("❌ Error sending message: ", error);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Menu - TableTrove</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Menu</h2>
+  <div>
+    <button onclick="showCategory('veg')">Veg</button>
+    <button onclick="showCategory('nonveg')">Non-Veg</button>
+  </div>
+
+  <div id="menuItems"></div>
+
+  <script>
+    const dishes = {
+      veg: [
+        {
+          name: "Paneer Butter Masala",
+          img: "https://via.placeholder.com/150",
+          detail: "Ingredients, Recipe, Nutrition info..."
+        },
+        {
+          name: "Veg Biryani",
+          img: "https://via.placeholder.com/150",
+          detail: "Ingredients, Recipe, Nutrition info..."
+        }
+      ],
+      nonveg: [
+        {
+          name: "Chicken Curry",
+          img: "https://via.placeholder.com/150",
+          detail: "Ingredients, Recipe, Nutrition info..."
+        },
+        {
+          name: "Fish Fry",
+          img: "https://via.placeholder.com/150",
+          detail: "Ingredients, Recipe, Nutrition info..."
+        }
+      ]
+    };
+
+    function showCategory(type) {
+      const container = document.getElementById("menuItems");
+      container.innerHTML = "";
+      dishes[type].forEach((dish) => {
+        const card = document.createElement("div");
+        card.innerHTML = `
+          <img src="${dish.img}" alt="${dish.name}" />
+          <h3>${dish.name}</h3>
+          <button onclick="alert('${dish.detail}')">About Dish</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>

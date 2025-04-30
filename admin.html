@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel - TableTrove</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+    .btn {
+      padding: 5px 10px;
+      margin: 2px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+    }
+    .confirm {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .reject {
+      background-color: #f44336;
+      color: white;
+    }
+    .delete {
+      background-color: #777;
+      color: white;
+    }
+    .status-pending {
+      color: orange;
+    }
+    .status-confirmed {
+      color: green;
+    }
+    .status-rejected {
+      color: red;
+    }
+    #search {
+      margin: 10px auto;
+      display: block;
+      width: 300px;
+      padding: 8px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Admin Booking Panel</h1>
+
+  <input type="text" id="search" placeholder="Search by name...">
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Date</th>
+        <th>Guests</th>
+        <th>Status</th>
+        <th>Actions</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="bookingTableBody"></tbody>
+  </table>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB66c4IOFIYugi-vwboYk1GqPOEQrI7mXA",
+      authDomain: "tabletrove-5d8a2.firebaseapp.com",
+      projectId: "tabletrove-5d8a2",
+      storageBucket: "tabletrove-5d8a2.appspot.com",
+      messagingSenderId: "60366621653",
+      appId: "1:60366621653:web:01dcff1f23e71640f10b5c"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const tableBody = document.getElementById("bookingTableBody");
+    const searchInput = document.getElementById("search");
+
+    let bookings = [];
+
+    function renderBookings(filteredBookings) {
+      tableBody.innerHTML = "";
+      filteredBookings.forEach(doc => {
+        const data = doc.data();
+        const id = doc.id;
+        const statusClass = data.status === "confirmed" ? "status-confirmed"
+                         : data.status === "rejected" ? "status-rejected"
+                         : "status-pending";
+
+        const row = `
+          <tr>
+            <td>${data.name}</td>
+            <td>${data.contact}</td>
+            <td>${data.date}</td>
+            <td>${data.guests}</td>
+            <td class="${statusClass}">${data.status}</td>
+            <td>
+              <button class="btn confirm" onclick="updateStatus('${id}', 'confirmed')">Confirm</button>
+              <button class="btn reject" onclick="updateStatus('${id}', 'rejected')">Reject</button>
+            </td>
+            <td>
+              <button class="btn delete" onclick="deleteBooking('${id}')">Delete</button>
+            </td>
+          </tr>
+        `;
+        tableBody.innerHTML += row;
+      });
+    }
+
+    function updateStatus(id, newStatus) {
+      db.collection("bookings").doc(id).update({
+        status: newStatus
+      })
+      .then(() => console.log("Status updated"))
+      .catch((error) => console.error("Error updating status:", error));
+    }
+
+    function deleteBooking(id) {
+      if (confirm("Are you sure you want to delete this booking?")) {
+        db.collection("bookings").doc(id).delete()
+          .then(() => console.log("Booking deleted"))
+          .catch((error) => console.error("Error deleting booking:", error));
+      }
+    }
+
+    db.collection("bookings").orderBy("date").onSnapshot(snapshot => {
+      bookings = snapshot.docs;
+      renderBookings(bookings);
+    });
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase();
+      const filtered = bookings.filter(doc => doc.data().name.toLowerCase().includes(query));
+      renderBookings(filtered);
+    });
+  </script>
+</body>
+</html>

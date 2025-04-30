@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TableTrove</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">🍽️</div>
+    <h1 class="site-title">TableTrove</h1>
+    <p class="slogan">A Digital Dining</p>
+    <nav>
+      <button onclick="openForm()">Book Your Table</button>
+      <a href="#about">About Us</a>
+      <a href="menu.html">Menu</a>
+      <a href="admin.html">Admin</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section id="special-dishes">
+    <h2>Special Dishes</h2>
+    <div class="dish-carousel" id="dishCarousel"></div>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Welcome to TableTrove! We are a proud restaurant serving customers since 1995. Founded by Muskan Likhar, our mission is to offer exquisite dining experiences and seamless digital table booking.</p>
+  </section>
+
+  <!-- Booking Modal -->
+  <div id="bookingForm" class="modal" style="display:none;">
+    <form id="booking-form">
+      <h3>Book Your Table</h3>
+      <input type="text" placeholder="Name" required id="name" />
+      <input type="tel" placeholder="Contact" required id="contact" />
+      <input type="date" required id="date" />
+      <input type="number" placeholder="Number of Guests" required id="guests" />
+      <button type="submit">Submit</button>
+      <button type="button" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+
+  <!-- Firebase Config -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB66c4IOFIYugi-vwboYk1GqPOEQrI7mXA",
+      authDomain: "tabletrove-5d8a2.firebaseapp.com",
+      projectId: "tabletrove-5d8a2",
+      storageBucket: "tabletrove-5d8a2.appspot.com",
+      messagingSenderId: "60366621653",
+      appId: "1:60366621653:web:01dcff1f23e71640f10b5c",
+      measurementId: "G-EYKJ7R9439"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    firebase.analytics();
+  </script>
+
+  <!-- Form Submission Script -->
+  <script>
+    const bookingForm = document.getElementById("booking-form");
+
+    bookingForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const contact = document.getElementById("contact").value;
+      const date = document.getElementById("date").value;
+      const guests = document.getElementById("guests").value;
+
+      db.collection("bookings").add({
+        name,
+        contact,
+        date,
+        guests,
+        status: "pending"
+      })
+      .then(() => {
+        alert("Booking submitted successfully!");
+        bookingForm.reset();
+        closeForm();
+      })
+      .catch((error) => {
+        console.error("Error saving booking: ", error);
+        alert("There was an error submitting your booking. Please try again.");
+      });
+    });
+
+    function openForm() {
+      document.getElementById("bookingForm").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("bookingForm").style.display = "none";
+    }
+  </script>
+
+  <script src="script.js" type="module"></script>
+</body>
+</html>
