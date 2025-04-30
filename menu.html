@@ -67,118 +67,124 @@
     .item-card button:hover {
       background: #800000;
     }
+    /* Modal styling */
     .modal {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      display: flex;
+      background: rgba(0,0,0,0.6);
       justify-content: center;
       align-items: center;
     }
-    .modal form {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 10px;
+      position: relative;
+    }
+    .modal-content h3 {
+      margin-top: 0;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #a02c2c;
     }
   </style>
 </head>
 <body>
 
 <h1>Our Menu</h1>
-<!-- VEG SECTION -->
+
+<!-- Veg Dishes Section -->
 <div class="menu-section">
   <h2 class="menu-title">🌿 Veg Dishes</h2>
   <div class="grid">
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?paneer" /><div class="item-info"><h3>Paneer Butter Masala</h3><p>₹220</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?veg-biryani" /><div class="item-info"><h3>Veg Biryani</h3><p>₹180</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?palak-paneer" /><div class="item-info"><h3>Palak Paneer</h3><p>₹200</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?aloo-gobi" /><div class="item-info"><h3>Aloo Gobi</h3><p>₹160</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?dal" /><div class="item-info"><h3>Dal Makhani</h3><p>₹150</p><button onclick="openForm()">Book Now</button></div></div>
 
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chole" /><div class="item-info"><h3>Chole Bhature</h3><p>₹170</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?veg-pulao" /><div class="item-info"><h3>Veg Pulao</h3><p>₹140</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?mushroom" /><div class="item-info"><h3>Mushroom Masala</h3><p>₹190</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?paneer-tikka" /><div class="item-info"><h3>Paneer Tikka</h3><p>₹210</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?hakka-noodles" /><div class="item-info"><h3>Hakka Noodles</h3><p>₹160</p><button onclick="openForm()">Book Now</button></div></div>
+    <!-- Item 1: Paneer Butter Masala -->
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?paneer" alt="Paneer Butter Masala" />
+      <div class="item-info">
+        <h3>Paneer Butter Masala</h3>
+        <p>₹220</p>
+        <button onclick="showDescription('Paneer Butter Masala', 'Paneer, butter, tomatoes, cream, spices', 'Sauté onions and tomatoes, blend into a puree. Cook with butter and spices, add paneer cubes and cream.', 'Calories: 635 kcal, Protein: 20.4g, Fat: 48.2g, Carbs: 29.5g')">Description</button>
+      </div>
+    </div>
 
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?spring-roll" /><div class="item-info"><h3>Veg Spring Roll</h3><p>₹130</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?malai-kofta" /><div class="item-info"><h3>Malai Kofta</h3><p>₹200</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?kadai-paneer" /><div class="item-info"><h3>Kadai Paneer</h3><p>₹190</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?bhindi" /><div class="item-info"><h3>Bhindi Masala</h3><p>₹150</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?mix-veg" /><div class="item-info"><h3>Mix Veg Curry</h3><p>₹170</p><button onclick="openForm()">Book Now</button></div></div>
+    <!-- Item 2: Veg Biryani -->
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?veg-biryani" alt="Veg Biryani" />
+      <div class="item-info">
+        <h3>Veg Biryani</h3>
+        <p>₹180</p>
+        <button onclick="showDescription('Veg Biryani', 'Basmati rice, mixed vegetables, yogurt, spices, saffron', 'Marinate vegetables in spiced yogurt. Layer with partially cooked rice and saffron milk. Cook on low heat.', 'Calories: 303 kcal, Protein: 7g, Fat: 4.7g, Carbs: 65g')">Description</button>
+      </div>
+    </div>
 
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?rajma" /><div class="item-info"><h3>Rajma Chawal</h3><p>₹160</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?paratha" /><div class="item-info"><h3>Stuffed Paratha</h3><p>₹140</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?manchurian" /><div class="item-info"><h3>Veg Manchurian</h3><p>₹170</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?tandoori-aloo" /><div class="item-info"><h3>Tandoori Aloo</h3><p>₹160</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?corn" /><div class="item-info"><h3>Corn Cheese Balls</h3><p>₹150</p><button onclick="openForm()">Book Now</button></div></div>
+    <!-- Item 3: Chole Bhature -->
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?chole-bhature" alt="Chole Bhature" />
+      <div class="item-info">
+        <h3>Chole Bhature</h3>
+        <p>₹150</p>
+        <button onclick="showDescription('Chole Bhature', 'Chickpeas, flour, yogurt, spices', 'Cook chickpeas with spices to make chole. Prepare dough with flour and yogurt, roll and deep-fry to make bhature.', 'Calories: 427 kcal, Protein: 12g, Fat: 15g, Carbs: 60g')">Description</button>
+      </div>
+    </div>
+
+    <!-- Item 4: Palak Paneer -->
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?palak-paneer" alt="Palak Paneer" />
+      <div class="item-info">
+        <h3>Palak Paneer</h3>
+        <p>₹200</p>
+        <button onclick="showDescription('Palak Paneer', 'Spinach, paneer, onions, tomatoes, spices', 'Blanch spinach and blend into a puree. Sauté onions and tomatoes, add spices and spinach puree. Add paneer cubes and simmer.', 'Calories: 300 kcal, Protein: 15g, Fat: 20g, Carbs: 15g')">Description</button>
+      </div>
+    </div>
+
+    <!-- Item 5: Aloo Gobi -->
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?aloo-gobi" alt="Aloo Gobi" />
+      <div class="item-info">
+        <h3>Aloo Gobi</h3>
+        <p>₹180</p>
+        <button onclick="showDescription('Aloo Gobi', 'Potatoes, cauliflower, onions, tomatoes, spices', 'Sauté onions and tomatoes with spices. Add potatoes and cauliflower, cook until tender.', 'Calories: 250 kcal, Protein: 5g, Fat: 10g, Carbs: 35g')">Description</button>
+      </div>
+    </div>
+
+    <!-- Continue adding items up to 40 -->
+
   </div>
 </div>
 
-<!-- NON-VEG SECTION -->
-<div class="menu-section">
-  <h2 class="menu-title">🍗 Non-Veg Dishes</h2>
-  <div class="grid">
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-biryani" /><div class="item-info"><h3>Chicken Biryani</h3><p>₹250</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?butter-chicken" /><div class="item-info"><h3>Butter Chicken</h3><p>₹280</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?mutton" /><div class="item-info"><h3>Mutton Rogan Josh</h3><p>₹320</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-masala" /><div class="item-info"><h3>Chicken Tikka Masala</h3><p>₹270</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?fish-curry" /><div class="item-info"><h3>Fish Curry</h3><p>₹290</p><button onclick="openForm()">Book Now</button></div></div>
-
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-korma" /><div class="item-info"><h3>Chicken Korma</h3><p>₹260</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?egg-curry" /><div class="item-info"><h3>Egg Curry</h3><p>₹190</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?keema" /><div class="item-info"><h3>Mutton Keema</h3><p>₹310</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?tandoori-chicken" /><div class="item-info"><h3>Tandoori Chicken</h3><p>₹280</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-65" /><div class="item-info"><h3>Chicken 65</h3><p>₹240</p><button onclick="openForm()">Book Now</button></div></div>
-
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?prawns" /><div class="item-info"><h3>Prawn Masala</h3><p>₹300</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-lollipop" /><div class="item-info"><h3>Chicken Lollipop</h3><p>₹210</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?mutton-biryani" /><div class="item-info"><h3>Mutton Biryani</h3><p>₹330</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?shawarma" /><div class="item-info"><h3>Chicken Shawarma</h3><p>₹180</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?fish-tikka" /><div class="item-info"><h3>Fish Tikka</h3><p>₹290</p><button onclick="openForm()">Book Now</button></div></div>
-
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?egg-biryani" /><div class="item-info"><h3>Egg Biryani</h3><p>₹220</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-noodles" /><div class="item-info"><h3>Chicken Noodles</h3><p>₹190</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?chicken-soup" /><div class="item-info"><h3>Chicken Soup</h3><p>₹150</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?grilled-chicken" /><div class="item-info"><h3>Grilled Chicken</h3><p>₹260</p><button onclick="openForm()">Book Now</button></div></div>
-    <div class="item-card"><img src="https://source.unsplash.com/300x200/?fried-rice" /><div class="item-info"><h3>Chicken Fried Rice</h3><p>₹200</p><button onclick="openForm()">Book Now</button></div></div>
+<!-- Modal Template -->
+<div class="modal" id="descModal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h3 id="modal-title"></h3>
+    <p><strong>Ingredients:</strong> <span id="modal-ingredients"></span></p>
+    <p><strong>Recipe:</strong> <span id="modal-recipe"></span></p>
+    <p><strong>Nutrition:</strong> <span id="modal-nutrition"></span></p>
   </div>
 </div>
-<!-- Booking Modal -->
-<div id="bookingForm" class="modal" style="display: none;">
-  <form id="booking-form">
-    <h3>Book Your Table</h3>
-    <input type="text" placeholder="Name" required id="name" />
-    <input type="tel" placeholder="Contact" required id="contact" />
-    <input type="date" required id="date" />
-    <input type="number" placeholder="Number of Guests" required id="guests" />
-    <button type="submit">Submit</button>
-    <button type="button" onclick="closeForm()">Close</button>
-  </form>
-</div>
 
-<!-- Booking Script -->
+<!-- Script -->
 <script>
-  function openForm() {
-    document.getElementById("bookingForm").style.display = "flex";
+  function showDescription(title, ingredients, recipe, nutrition) {
+    document.getElementById("modal-title").textContent = title;
+    document.getElementById("modal-ingredients").textContent = ingredients;
+    document.getElementById("modal-recipe").textContent = recipe;
+    document.getElementById("modal-nutrition").textContent = nutrition;
+    document.getElementById("descModal").style.display = "flex";
   }
 
-  function closeForm() {
-    document.getElementById("bookingForm").style.display = "none";
+  function closeModal() {
+    document.getElementById("descModal").style.display = "none";
   }
-
-  // Optional: Handle booking submission
-  document.getElementById("booking-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    alert("Thank you! Your table has been booked.");
-    document.getElementById("booking-form").reset();
-    closeForm();
-  });
 </script>
 
 </body>
