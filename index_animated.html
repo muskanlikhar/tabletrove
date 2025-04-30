@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TableTrove</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { font-family: 'Open Sans', sans-serif; margin: 0; background: #fff; color: #333; }
+    header { background: #e67e22; padding: 1rem; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .logo { font-size: 1.5rem; font-weight: bold; color: #fff; }
+    .nav-links { list-style: none; display: flex; gap: 1.5rem; }
+    .nav-links a { color: #fff; text-decoration: none; font-weight: 600; }
+    #hero { background: url('https://source.unsplash.com/1600x700/?restaurant,food') center/cover no-repeat; color: #fff; padding: 100px 20px; text-align: center; }
+    .hero-content h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+    .hero-content .tagline { font-size: 1.25rem; margin-bottom: 1rem; }
+    .hero-content button { padding: 0.75rem 1.5rem; font-size: 1rem; background: #e67e22; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+
+    #about, #featured, #contact { padding: 60px 20px; max-width: 1100px; margin: auto; }
+    .about-container, .contact-container { display: flex; flex-wrap: wrap; gap: 2rem; }
+    .about-image img, .contact-image img { width: 100%; border-radius: 12px; }
+    .about-text, .contact-text { flex: 1; }
+    .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .menu-item { background: #f4f4f4; padding: 1rem; border-radius: 10px; text-align: center; }
+    .menu-item img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; }
+    .menu-item h4 { margin: 0.75rem 0 0.5rem; }
+
+    footer { text-align: center; padding: 1rem; background: #333; color: #fff; }
+  </style>
+
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar">
+    <div class="logo">TableTrove</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#featured">Featured</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="hero" data-aos="fade-in" data-aos-duration="1500">
+  <div class="hero-content">
+    <h1>TableTrove</h1>
+    <p class="tagline">Fine Dining. Redefined.</p>
+    <button id="reserve-btn">Reserve a Table</button>
+  </div>
+</section>
+
+<section id="about" data-aos="fade-up" data-aos-duration="1500">
+  <div class="about-container">
+    <div class="about-image">
+      <img src="https://source.unsplash.com/600x400/?fine-dining" alt="Elegant Dining Area">
+    </div>
+    <div class="about-text">
+      <h2>About Us</h2>
+      <p>At Table Trove, 
+          we're more than just a restaurant – we're a celebration of culinary craftsmanship and a passion for creating 
+          exceptional dining experiences. Our chefs pour their heart and soul into every dish, using the freshest, locally sourced 
+          ingredients whenever possible to bring you a menu that is both comforting and inspiring. We believe in the power of a thoughtfully 
+          prepared meal to elevate your day, whether you're joining us for a casual lunch, a special celebration, or a cozy dinner.
+          Our team is dedicated to providing warm and attentive service, ensuring that your time with us is always a treasure.</p>
+      <p>Founded with passion, we take pride in sourcing the freshest ingredients and offering warm hospitality to our guests.</p>
+                                                    <p>Our Journey</p>
+
+        <p>The story of Table Trove is one of dedication to the art of food and a desire to share that passion with our community. 
+            From the initial spark of an idea to the bustling restaurant you see today, our journey has been driven by a commitment 
+            to quality and a love for bringing people together through food. We meticulously sought out the finest ingredients, 
+            honed our culinary skills, and created an atmosphere where everyone feels welcome. Every step of the way, our focus
+            has remained on crafting dishes that delight the senses and creating a space where memories are made. We're incredibly
+            grateful for the support we've received and look forward to many more years of sharing our culinary treasures with you.</p>
+
+
+    </div>
+  </div>
+</section>
+
+<section id="featured" data-aos="fade-up" data-aos-duration="1500">
+  <h2 style="text-align:center;">Featured Menu</h2>
+  <div class="featured-grid">
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/300x200?text=Paneer+Butter+Masala" alt="">
+      <h4>Paneer Butter Masala</h4>
+      <p>Rich and creamy tomato-based curry with soft paneer cubes.</p>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/300x200?text=Chicken+Biryani" alt="">
+      <h4>Chicken Biryani</h4>
+      <p>Aromatic rice with layered, spiced chicken cooked on dum.</p>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/300x200?text=Veg+Lasagna" alt="">
+      <h4>Veg Lasagna</h4>
+      <p>Layered pasta with vegetables, cheese, and rich tomato sauce.</p>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/300x200?text=Grilled+Salmon" alt="">
+      <h4>Grilled Salmon</h4>
+      <p>Salmon fillet grilled with herbs and served with lemon butter.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" data-aos="fade-up" data-aos-duration="1500">
+  <h2 style="text-align:center;">Contact Us</h2>
+  <div class="contact-container" style="margin-top: 2rem;">
+    <div class="contact-text">
+      <p><strong>Address:</strong> 123 Gourmet Street, Food City, FC 456789</p>
+      <p><strong>Phone:</strong> +91-9876543210</p>
+      <p><strong>Email:</strong> reservations@tabletrove.com</p>
+      <p>Open Daily: 11:00 AM – 11:00 PM</p>
+    </div>
+    <div class="contact-image">
+      <img src="https://source.unsplash.com/600x400/?restaurant,contact" alt="Contact us">
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 TableTrove. All rights reserved.
+</footer>
+
+
+<script>
+  AOS.init({ once: true });
+</script>
+</body>
+
+</html>
