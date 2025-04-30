@@ -8,16 +8,37 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 20px;
+      background-color: #f8f8f8;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .category-buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .category-buttons button {
+      background-color: #e67e22;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .category-buttons button:hover {
+      background-color: #d35400;
     }
     .grid {
-      display: grid;
+      display: none;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px;
       padding: 20px;
     }
     .item-card {
-      background: #f8f8f8;
+      background: white;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -70,23 +91,61 @@
 </head>
 <body>
 
-<h1 style="text-align:center;">Our Menu</h1>
+<h1>Our Menu</h1>
+<h2>Select a Category</h2>
 
-<div class="grid">
-  <!-- Veg item -->
+<div class="category-buttons">
+  <button onclick="showCategory('veg')">Veg</button>
+  <button onclick="showCategory('nonveg')">Non-Veg</button>
+</div>
+
+<!-- Veg Grid -->
+<div class="grid" id="veg">
   <div class="item-card">
     <img src="https://source.unsplash.com/300x200/?paneer" />
     <h3>Paneer Butter Masala</h3>
     <p>₹220</p>
-    <button onclick="showDescription('Paneer Butter Masala', 'Paneer, butter, tomato, cream, spices', 'Sauté tomatoes and spices, blend, cook with paneer and cream.', 'Calories: 320, Protein: 14g, Fat: 22g')">Description</button>
+    <button onclick="showDescription(
+      'Paneer Butter Masala',
+      'Paneer, butter, tomato puree, cream, spices',
+      'Cook butter, tomatoes, spices; add paneer & cream, simmer till thick.',
+      'Calories: 320, Protein: 14g, Fat: 22g')">Description</button>
   </div>
 
-  <!-- Non-Veg item -->
+  <div class="item-card">
+    <img src="https://source.unsplash.com/300x200/?dal-makhani" />
+    <h3>Dal Makhani</h3>
+    <p>₹180</p>
+    <button onclick="showDescription(
+      'Dal Makhani',
+      'Black lentils, kidney beans, cream, butter, spices',
+      'Slow cook dal overnight, finish with cream and butter.',
+      'Calories: 290, Protein: 12g, Fat: 18g')">Description</button>
+  </div>
+</div>
+
+<!-- Non-Veg Grid -->
+<div class="grid" id="nonveg">
   <div class="item-card">
     <img src="https://source.unsplash.com/300x200/?chicken-biryani" />
     <h3>Chicken Biryani</h3>
     <p>₹250</p>
-    <button onclick="showDescription('Chicken Biryani', 'Chicken, rice, saffron, yogurt, spices', 'Marinate chicken, layer with rice, cook on dum.', 'Calories: 450, Protein: 25g, Fat: 18g')">Description</button>
+    <button onclick="showDescription(
+      'Chicken Biryani',
+      'Chicken, basmati rice, yogurt, saffron, spices',
+      'Marinate chicken, layer with rice, cook on low heat (dum).',
+      'Calories: 450, Protein: 25g, Fat: 18g')">Description</button>
+  </div>
+
+  <div class="item-card">
+    <img src="https://source.unsplash.com/300x200/?butter-chicken" />
+    <h3>Butter Chicken</h3>
+    <p>₹260</p>
+    <button onclick="showDescription(
+      'Butter Chicken',
+      'Chicken, tomato, butter, cream, fenugreek',
+      'Grill chicken, cook in buttery tomato cream sauce.',
+      'Calories: 410, Protein: 28g, Fat: 24g')">Description</button>
   </div>
 </div>
 
@@ -103,6 +162,11 @@
 
 <!-- Script -->
 <script>
+  function showCategory(category) {
+    document.getElementById("veg").style.display = category === 'veg' ? 'grid' : 'none';
+    document.getElementById("nonveg").style.display = category === 'nonveg' ? 'grid' : 'none';
+  }
+
   function showDescription(title, ingredients, recipe, nutrition) {
     document.getElementById("modal-title").innerText = title;
     document.getElementById("modal-ingredients").innerText = ingredients;
@@ -114,6 +178,12 @@
   function closeModal() {
     document.getElementById("descModal").style.display = "none";
   }
+
+  // Optional: Auto-hide both sections on page load
+  window.onload = () => {
+    document.getElementById("veg").style.display = "none";
+    document.getElementById("nonveg").style.display = "none";
+  };
 </script>
 
 </body>
