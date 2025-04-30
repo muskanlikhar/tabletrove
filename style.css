@@ -1,94 +1,129 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #fff0f5, #ffe4e1);
+  font-family: 'Open Sans', sans-serif;
+  background-color: #fff;
   color: #333;
+  scroll-behavior: smooth;
 }
 
-header {
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 40px;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ff6f61;
-  color: white;
-  padding: 10px 20px;
-  position: sticky;
-  top: 0;
+  z-index: 100;
 }
 
-.logo {
-  font-size: 2rem;
-}
-
-.site-title {
-  flex: 1;
-  text-align: center;
-  font-size: 2rem;
-  margin: 0;
-}
-
-.slogan {
-  position: absolute;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.9rem;
-  color: #fffde7;
-}
-
-nav {
-  display: flex;
-  gap: 15px;
-}
-
-button {
-  background: #ffffff;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
+.navbar .logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
   font-weight: bold;
-  border-radius: 5px;
 }
 
-section {
-  padding: 30px;
-}
-
-.dish-carousel {
+.navbar ul {
+  list-style: none;
   display: flex;
-  overflow-x: scroll;
-  gap: 10px;
-  animation: slideIn 10s linear infinite;
+  gap: 20px;
 }
 
-.dish-carousel img {
-  width: 150px;
-  border-radius: 12px;
+.navbar ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
-@keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(-100%); }
+.navbar ul li a:hover {
+  color: #a02c2c;
+}
+
+#hero {
+  height: 100vh;
+  background: url('https://source.unsplash.com/1600x900/?restaurant,interior') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  color: white;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.hero-content button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  background: #a02c2c;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#about {
+  padding: 80px 40px;
+  background: #f9f9f9;
+}
+
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+.about-text {
+  max-width: 500px;
+}
+
+.about-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  margin-bottom: 20px;
 }
 
 .modal {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0,0,0,0.7);
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  height: 100vh; width: 100%;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .modal form {
   background: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 300px;
+  padding: 30px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+}
+
+.modal input, .modal button {
+  padding: 10px;
+  font-size: 16px;
 }
