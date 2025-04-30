@@ -1,92 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TableTrove</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TableTrove</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Basic Reset (Normalize could be used)  */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Improved Modal Styling (move to style.css for consistency)  */
+        #bookingForm {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;  /* Ensure it's on top  */
+        }
+
+        #bookingForm form {
+            background: white;
+            padding: 2em;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        #bookingForm h3 {
+            text-align: center;
+            margin-bottom: 1em;
+            color: #444;
+        }
+
+        #bookingForm input,
+        #bookingForm button {
+            display: block;
+            width: 100%;
+            padding: 0.75em;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        #bookingForm button[type="submit"] {
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #bookingForm button[type="submit"]:hover {
+            background-color: #d35400;
+        }
+
+        #bookingForm button[type="button"] {
+            background-color: #ccc;
+            color: #333;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #bookingForm button[type="button"]:hover {
+            background-color: #bbb;
+        }
+    </style>
 </head>
+
 <body>
 
-  <header>
-    <nav class="navbar">
-      <div class="logo">TableTrove</div>
-      <ul>
-        <li><a href="#hero">Home</a></li>
-        <li><a href="menu.html">Menu</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="#" onclick="openForm()">Book Now</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <nav class="navbar">
+            <div class="logo">TableTrove</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#" id="book-btn">Book Now</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <section id="hero">
-    <div class="hero-content">
-      <h1>TableTrove</h1>
-      <p>Fine Dining. Redefined.</p>
-      <button onclick="openForm()">Reserve a Table</button>
+    <section id="hero">
+        <div class="hero-content">
+            <h1>TableTrove</h1>
+            <p class="tagline">Fine Dining. Redefined.</p>
+            <button id="reserve-btn">Reserve a Table</button>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://source.unsplash.com/600x400/?fine-dining" alt="Elegant Dining Area">
+            </div>
+            <div class="about-text">
+                <h2>About Us</h2>
+                <p>At TableTrove, we blend tradition with taste in an elegant ambiance that leaves a lasting
+                    impression. Whether it's a romantic evening or a grand celebration, our curated menu and
+                    attentive service offer a truly memorable experience.</p>
+                <p>Our chefs use only the freshest, locally sourced ingredients to create dishes that are both
+                    beautiful and delicious. We believe that dining is an experience, and we strive to make every
+                    visit to TableTrove special.</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="bookingForm" class="modal">
+        <form id="booking-form">
+            <h3>Book Your Table</h3>
+            <input type="text" placeholder="Your Name" required id="name" />
+            <input type="tel" placeholder="Your Contact Number" required id="contact" />
+            <input type="date" required id="date" />
+            <input type="number" placeholder="Number of Guests" required id="guests" min="1" />
+            <button type="submit">Submit Reservation</button>
+            <button type="button" onclick="closeForm()">Close</button>
+        </form>
     </div>
-  </section>
 
-  <section id="about">
-    <div class="about-container">
-      <div class="about-image">
-        <img src="https://source.unsplash.com/600x400/?fine-dining" alt="Dining">
-      </div>
-      <div class="about-text">
-        <h2>About Us</h2>
-        <p>At TableTrove, we blend tradition with taste in an elegant ambiance that leaves a lasting impression. Whether it's a romantic evening or a celebration, our curated menu and attentive service offer a truly memorable experience.</p>
-      </div>
-    </div>
-  </section>
+    <script src="script.js" type="module"></script>
+    <script>
+        //  Inline script for modal (can be moved to script.js)
+        const bookingModal = document.getElementById('bookingForm');
+        const openModalButtons = document.querySelectorAll('[id$="-btn"]');  //  Selects both buttons
+        const closeModalButton = document.querySelector('#bookingForm button[type="button"]');
 
-  <!-- Booking Modal -->
-  <div id="bookingForm" class="modal">
-    <form id="booking-form">
-      <h3>Book Your Table</h3>
-      <input type="text" placeholder="Name" required id="name" />
-      <input type="tel" placeholder="Contact" required id="contact" />
-      <input type="date" required id="date" />
-      <input type="number" placeholder="Number of Guests" required id="guests" />
-      <button type="submit">Submit</button>
-      <button type="button" onclick="closeForm()">Close</button>
-    </form>
-  </div>
-
-  <!-- Firebase SDK + Booking Script (reuse your existing setup) -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-  <script>
-    const firebaseConfig = { /* your config */ };
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    firebase.analytics();
-
-    const bookingForm = document.getElementById("booking-form");
-    bookingForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const contact = document.getElementById("contact").value;
-      const date = document.getElementById("date").value;
-      const guests = document.getElementById("guests").value;
-      db.collection("bookings").add({ name, contact, date, guests, status: "pending" })
-        .then(() => {
-          alert("Booking submitted!");
-          bookingForm.reset();
-          closeForm();
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                bookingModal.style.display = 'flex';
+            });
         });
-    });
 
-    function openForm() {
-      document.getElementById("bookingForm").style.display = "block";
-    }
-    function closeForm() {
-      document.getElementById("bookingForm").style.display = "none";
-    }
-  </script>
+        closeModalButton.addEventListener('click', closeForm);
 
+        function closeForm() {
+            bookingModal.style.display = 'none';
+        }
+
+        //  Click outside to close
+        window.addEventListener('click', (event) => {
+            if (event.target === bookingModal) {
+                closeForm();
+            }
+        });
+    </script>
 </body>
+
 </html>
