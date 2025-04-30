@@ -9,36 +9,63 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      background: #fff;
+    }
+    h1 {
+      text-align: center;
+      padding: 20px;
+    }
+    .menu-section {
+      padding: 40px;
+    }
+    .menu-title {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #a02c2c;
     }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px;
-      padding: 20px;
     }
     .item-card {
       background: #f8f8f8;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 15px;
     }
     .item-card img {
       width: 100%;
       height: 160px;
       object-fit: cover;
     }
+    .item-info {
+      padding: 10px;
+      text-align: center;
+    }
+    .item-info h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+    }
+    .item-info p {
+      margin: 0;
+      color: #555;
+    }
     .item-card button {
-      background-color: #a02c2c;
-      color: white;
-      padding: 8px 16px;
-      margin: 10px;
+      margin-top: 10px;
+      padding: 8px 20px;
+      background: #a02c2c;
+      color: #fff;
       border: none;
-      border-radius: 5px;
+      border-radius: 4px;
       cursor: pointer;
     }
     .item-card button:hover {
-      background-color: #800000;
+      background: #800000;
     }
     .modal {
       display: none;
@@ -46,75 +73,314 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
       background: rgba(0,0,0,0.7);
+      display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 999;
     }
     .modal-content {
       background: white;
       padding: 20px;
-      width: 90%;
-      max-width: 500px;
-      border-radius: 10px;
+      border-radius: 8px;
+      max-width: 600px; /* Adjust as needed */
       position: relative;
     }
-    .close-btn {
+    .modal-content h2 {
+      margin-top: 0;
+    }
+    .close-button {
       position: absolute;
       top: 10px;
-      right: 15px;
+      right: 10px;
       font-size: 20px;
       cursor: pointer;
-      color: #a02c2c;
     }
   </style>
 </head>
 <body>
 
-<h1 style="text-align:center;">Our Menu</h1>
+<h1>Our Menu</h1>
 
-<div class="grid">
-  <!-- Veg item -->
-  <div class="item-card">
-    <img src="https://source.unsplash.com/300x200/?paneer" />
-    <h3>Paneer Butter Masala</h3>
-    <p>₹220</p>
-    <button onclick="showDescription('Paneer Butter Masala', 'Paneer, butter, tomato, cream, spices', 'Sauté tomatoes and spices, blend, cook with paneer and cream.', 'Calories: 320, Protein: 14g, Fat: 22g')">Description</button>
-  </div>
+<div class="menu-section">
+  <h2 class="menu-title">🌿 Veg Dishes</h2>
+  <div class="grid">
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?paneer" />
+      <div class="item-info">
+        <h3>Paneer Butter Masala</h3>
+        <p>₹220</p>
+        <button onclick="showDescription('Paneer Butter Masala')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?veg-biryani" />
+      <div class="item-info">
+        <h3>Veg Biryani</h3>
+        <p>₹180</p>
+        <button onclick="showDescription('Veg Biryani')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?palak-paneer" />
+      <div class="item-info">
+        <h3>Palak Paneer</h3>
+        <p>₹200</p>
+        <button onclick="showDescription('Palak Paneer')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?aloo-gobi" />
+      <div class="item-info">
+        <h3>Aloo Gobi</h3>
+        <p>₹160</p>
+        <button onclick="showDescription('Aloo Gobi')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?dal" />
+      <div class="item-info">
+        <h3>Dal Makhani</h3>
+        <p>₹150</p>
+        <button onclick="showDescription('Dal Makhani')">Show Description</button>
+      </div>
+    </div>
 
-  <!-- Non-Veg item -->
-  <div class="item-card">
-    <img src="https://source.unsplash.com/300x200/?chicken-biryani" />
-    <h3>Chicken Biryani</h3>
-    <p>₹250</p>
-    <button onclick="showDescription('Chicken Biryani', 'Chicken, rice, saffron, yogurt, spices', 'Marinate chicken, layer with rice, cook on dum.', 'Calories: 450, Protein: 25g, Fat: 18g')">Description</button>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?chole" />
+      <div class="item-info">
+        <h3>Chole Bhature</h3>
+        <p>₹170</p>
+        <button onclick="showDescription('Chole Bhature')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?veg-pulao" />
+      <div class="item-info">
+        <h3>Veg Pulao</h3>
+        <p>₹140</p>
+        <button onclick="showDescription('Veg Pulao')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?mushroom" />
+      <div class="item-info">
+        <h3>Mushroom Masala</h3>
+        <p>₹190</p>
+        <button onclick="showDescription('Mushroom Masala')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?paneer-tikka" />
+      <div class="item-info">
+        <h3>Paneer Tikka</h3>
+        <p>₹210</p>
+        <button onclick="showDescription('Paneer Tikka')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?hakka-noodles" />
+      <div class="item-info">
+        <h3>Hakka Noodles</h3>
+        <p>₹160</p>
+        <button onclick="showDescription('Hakka Noodles')">Show Description</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?spring-roll" />
+      <div class="item-info">
+        <h3>Veg Spring Roll</h3>
+        <p>₹130</p>
+        <button onclick="showDescription('Veg Spring Roll')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?malai-kofta" />
+      <div class="item-info">
+        <h3>Malai Kofta</h3>
+        <p>₹200</p>
+        <button onclick="showDescription('Malai Kofta')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?kadai-paneer" />
+      <div class="item-info">
+        <h3>Kadai Paneer</h3>
+        <p>₹190</p>
+        <button onclick="showDescription('Kadai Paneer')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?bhindi" />
+      <div class="item-info">
+        <h3>Bhindi Masala</h3>
+        <p>₹150</p>
+        <button onclick="showDescription('Bhindi Masala')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?mix-veg" />
+      <div class="item-info">
+        <h3>Mix Veg Curry</h3>
+        <p>₹170</p>
+        <button onclick="showDescription('Mix Veg Curry')">Show Description</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?rajma" />
+      <div class="item-info">
+        <h3>Rajma Chawal</h3>
+        <p>₹160</p>
+        <button onclick="showDescription('Rajma Chawal')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?paratha" />
+      <div class="item-info">
+        <h3>Stuffed Paratha</h3>
+        <p>₹140</p>
+        <button onclick="showDescription('Stuffed Paratha')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?manchurian" />
+      <div class="item-info">
+        <h3>Veg Manchurian</h3>
+        <p>₹170</p>
+        <button onclick="showDescription('Veg Manchurian')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?tandoori-aloo" />
+      <div class="item-info">
+        <h3>Tandoori Aloo</h3>
+        <p>₹160</p>
+        <button onclick="showDescription('Tandoori Aloo')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?corn" />
+      <div class="item-info">
+        <h3>Corn Cheese Balls</h3>
+        <p>₹150</p>
+        <button onclick="showDescription('Corn Cheese Balls')">Show Description</button>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal" id="descModal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <h3 id="modal-title"></h3>
-    <p><strong>Ingredients:</strong> <span id="modal-ingredients"></span></p>
-    <p><strong>Recipe:</strong> <span id="modal-recipe"></span></p>
-    <p><strong>Nutrition:</strong> <span id="modal-nutrition"></span></p>
-  </div>
-</div>
+<div class="menu-section">
+  <h2 class="menu-title">🍗 Non-Veg Dishes</h2>
+  <div class="grid">
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?chicken-biryani" />
+      <div class="item-info">
+        <h3>Chicken Biryani</h3>
+        <p>₹250</p>
+        <button onclick="showDescription('Chicken Biryani')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?butter-chicken" />
+      <div class="item-info">
+        <h3>Butter Chicken</h3>
+        <p>₹280</p>
+        <button onclick="showDescription('Butter Chicken')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?mutton" />
+      <div class="item-info">
+        <h3>Mutton Rogan Josh</h3>
+        <p>₹320</p>
+        <button onclick="showDescription('Mutton Rogan Josh')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?chicken-masala" />
+      <div class="item-info">
+        <h3>Chicken Tikka Masala</h3>
+        <p>₹270</p>
+        <button onclick="showDescription('Chicken Tikka Masala')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?fish-curry" />
+      <div class="item-info">
+        <h3>Fish Curry</h3>
+        <p>₹290</p>
+        <button onclick="showDescription('Fish Curry')">Show Description</button>
+      </div>
+    </div>
 
-<!-- Script -->
-<script>
-  function showDescription(title, ingredients, recipe, nutrition) {
-    document.getElementById("modal-title").innerText = title;
-    document.getElementById("modal-ingredients").innerText = ingredients;
-    document.getElementById("modal-recipe").innerText = recipe;
-    document.getElementById("modal-nutrition").innerText = nutrition;
-    document.getElementById("descModal").style.display = "flex";
-  }
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?chicken-korma" />
+      <div class="item-info">
+        <h3>Chicken Korma</h3>
+        <p>₹260</p>
+        <button onclick="showDescription('Chicken Korma')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?egg-curry" />
+      <div class="item-info">
+        <h3>Egg Curry</h3>
+        <p>₹190</p>
+        <button onclick="showDescription('Egg Curry')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?keema" />
+      <div class="item-info">
+        <h3>Mutton Keema</h3>
+        <p>₹310</p>
+        <button onclick="showDescription('Mutton Keema')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?tandoori-chicken" />
+      <div class="item-info">
+        <h3>Tandoori Chicken</h3>
+        <p>₹280</p>
+        <button onclick="showDescription('Tandoori Chicken')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?chicken-65" />
+      <div class="item-info">
+        <h3>Chicken 65</h3>
+        <p>₹240</p>
+        <button onclick="showDescription('Chicken 65')">Show Description</button>
+      </div>
+    </div>
 
-  function closeModal() {
-    document.getElementById("descModal").style.display = "none";
-  }
-</script>
-
-</body>
-</html>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?prawns" />
+      <div class="item-info">
+        <h3>Prawn Masala</h3>
+        <p>₹300</p>
+        <button onclick="showDescription('Prawn Masala')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?chicken-lollipop" />
+      <div class="item-info">
+        <h3>Chicken Lollipop</h3>
+        <p>₹210</p>
+        <button onclick="showDescription('Chicken Lollipop')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?mutton-biryani" />
+      <div class="item-info">
+        <h3>Mutton Biryani</h3>
+        <p>₹330</p>
+        <button onclick="showDescription('Mutton Biryani')">Show Description</button>
+      </div>
+    </div>
+    <div class="item-card">
+      <img src="https://source.unsplash.com/300x200/?shawarma" />
+      <div class="item-info">
+        <h3>Chicken Shawarma</h3>
+        <p>₹180</p>
+        <button onclick="showDescription('Chicken Shawarma')">
