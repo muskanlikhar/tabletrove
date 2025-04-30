@@ -93,7 +93,7 @@
     <button onclick="checkLogin()">Login</button>
   </div>
 
-  <!-- Admin Panel (hidden until login success) -->
+  <!-- Admin Panel -->
   <div id="adminPanel">
     <h1>Admin Booking Panel</h1>
     <input type="text" id="search" placeholder="Search by name...">
@@ -111,6 +111,19 @@
       </thead>
       <tbody id="bookingTableBody"></tbody>
     </table>
+
+    <h2>Contact Messages</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Message</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="contactTableBody"></tbody>
+    </table>
   </div>
 
   <!-- Firebase SDK -->
@@ -118,7 +131,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
   <script>
-    // Unlock the body once script runs
+    // Unlock the body
     document.documentElement.style.display = 'block';
     document.body.style.display = 'block';
 
@@ -148,7 +161,9 @@
 
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
+
       const tableBody = document.getElementById("bookingTableBody");
+      const contactTableBody = document.getElementById("contactTableBody");
       const searchInput = document.getElementById("search");
 
       let bookings = [];
@@ -170,8 +185,8 @@
           const data = doc.data();
           const id = doc.id;
           const statusClass = data.status === "confirmed" ? "status-confirmed"
-                           : data.status === "rejected" ? "status-rejected"
-                           : "status-pending";
+                             : data.status === "rejected" ? "status-rejected"
+                             : "status-pending";
 
           const row = `
             <tr>
@@ -192,6 +207,22 @@
           tableBody.innerHTML += row;
         });
       }
+
+      db.collection("contacts").orderBy("date", "desc").onSnapshot(snapshot => {
+        contactTableBody.innerHTML = "";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const row = `
+            <tr>
+              <td>${data.name}</td>
+              <td>${data.email}</td>
+              <td>${data.message}</td>
+              <td>${new Date(data.date).toLocaleString()}</td>
+            </tr>
+          `;
+          contactTableBody.innerHTML += row;
+        });
+      });
 
       window.updateStatus = function(id, newStatus) {
         db.collection("bookings").doc(id).update({ status: newStatus });
