@@ -1,186 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TableTrove Menu</title>
-  <link rel="stylesheet" href="styles.css">
   <style>
-    .menu-section {
-      margin-bottom: 40px;
-    }
-
-    .menu-item {
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .menu-item img {
-      width: 120px;
-      height: 90px;
-      object-fit: cover;
-      margin-right: 20px;
-      border-radius: 8px;
-    }
-
-    .menu-item h3 {
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
       margin: 0;
+      padding: 0;
     }
 
-    .description-btn {
-      margin-top: 10px;
-      padding: 6px 12px;
-      font-size: 14px;
-      background-color: #ff7f50;
-      border: none;
-      border-radius: 5px;
+    h1 {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      position: relative;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card h2 {
+      margin: 10px 0;
+    }
+
+    .card button {
+      background-color: #ff6f61;
       color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-bottom: 15px;
+      border-radius: 5px;
       cursor: pointer;
     }
 
     .modal {
       display: none;
       position: fixed;
-      z-index: 10;
+      z-index: 1;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       overflow: auto;
-      background: rgba(0,0,0,0.6);
+      background-color: rgba(0,0,0,0.4);
     }
 
     .modal-content {
-      background: white;
-      margin: 15% auto;
+      background-color: #fff;
+      margin: 10% auto;
       padding: 20px;
+      border-radius: 10px;
       width: 80%;
       max-width: 500px;
-      border-radius: 10px;
-      position: relative;
+      text-align: center;
     }
 
     .close {
-      position: absolute;
-      right: 15px;
-      top: 10px;
-      font-size: 22px;
-      font-weight: bold;
       color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
       cursor: pointer;
+    }
+
+    .close:hover {
+      color: black;
     }
   </style>
 </head>
 <body>
   <h1>TableTrove Menu</h1>
-
-  <div class="menu-section">
-    <h2>Starters</h2>
-
-    <div class="menu-item">
-      <img src="images/paneer-tikka.jpg" alt="Paneer Tikka">
-      <div>
-        <h3>Paneer Tikka</h3>
-        <button class="description-btn" onclick="showDescription('desc1')">Description</button>
-        <div id="desc1" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeDescription('desc1')">&times;</span>
-            <p>Marinated paneer cubes grilled to perfection with spices.</p>
-          </div>
-        </div>
-      </div>
+  <div class="menu-container">
+    <!-- Item 1 -->
+    <div class="card">
+      <img src="paneer-tikka.jpg" alt="Paneer Tikka">
+      <h2>Paneer Tikka</h2>
+      <button onclick="openModal('Paneer Tikka', 'Grilled paneer cubes marinated in Indian spices.')">View Description</button>
     </div>
 
-    <div class="menu-item">
-      <img src="images/chicken-lollipop.jpg" alt="Chicken Lollipop">
-      <div>
-        <h3>Chicken Lollipop</h3>
-        <button class="description-btn" onclick="showDescription('desc2')">Description</button>
-        <div id="desc2" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeDescription('desc2')">&times;</span>
-            <p>Spicy and crispy fried chicken wings with Indo-Chinese flavor.</p>
-          </div>
-        </div>
-      </div>
+    <!-- Item 2 -->
+    <div class="card">
+      <img src="chicken-biryani.jpg" alt="Chicken Biryani">
+      <h2>Chicken Biryani</h2>
+      <button onclick="openModal('Chicken Biryani', 'Aromatic basmati rice cooked with spicy chicken.')">View Description</button>
     </div>
+
+    <!-- Item 3 -->
+    <div class="card">
+      <img src="butter-chicken.jpg" alt="Butter Chicken">
+      <h2>Butter Chicken</h2>
+      <button onclick="openModal('Butter Chicken', 'Creamy tomato-based curry with tender chicken pieces.')">View Description</button>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="card">
+      <img src="veg-manchurian.jpg" alt="Veg Manchurian">
+      <h2>Veg Manchurian</h2>
+      <button onclick="openModal('Veg Manchurian', 'Crispy vegetable balls tossed in tangy sauce.')">View Description</button>
+    </div>
+
+    <!-- Add more items below in same format -->
+
   </div>
 
-  <div class="menu-section">
-    <h2>Main Course</h2>
-
-    <div class="menu-item">
-      <img src="images/butter-chicken.jpg" alt="Butter Chicken">
-      <div>
-        <h3>Butter Chicken</h3>
-        <button class="description-btn" onclick="showDescription('desc3')">Description</button>
-        <div id="desc3" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeDescription('desc3')">&times;</span>
-            <p>Creamy tomato-based curry with tender chicken pieces.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/palak-paneer.jpg" alt="Palak Paneer">
-      <div>
-        <h3>Palak Paneer</h3>
-        <button class="description-btn" onclick="showDescription('desc4')">Description</button>
-        <div id="desc4" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeDescription('desc4')">&times;</span>
-            <p>Soft paneer cubes in fresh spinach gravy with spices.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="menu-section">
-    <h2>Desserts</h2>
-
-    <div class="menu-item">
-      <img src="images/gulab-jamun.jpg" alt="Gulab Jamun">
-      <div>
-        <h3>Gulab Jamun</h3>
-        <button class="description-btn" onclick="showDescription('desc5')">Description</button>
-        <div id="desc5" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeDescription('desc5')">&times;</span>
-            <p>Milk-solid based sweet soaked in rose-flavored syrup.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/rabri.jpg" alt="Rabri">
-      <div>
-        <h3>Rabri</h3>
-        <button class="description-btn" onclick="showDescription('desc6')">Description</button>
-        <div id="desc6" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeDescription('desc6')">&times;</span>
-            <p>Thickened sweet milk with cardamom, dry fruits & kesar.</p>
-          </div>
-        </div>
-      </div>
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
     </div>
   </div>
 
   <script>
-    function showDescription(id) {
-      document.getElementById(id).style.display = 'block';
+    function openModal(title, description) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDescription').innerText = description;
+      document.getElementById('modal').style.display = 'block';
     }
 
-    function closeDescription(id) {
-      document.getElementById(id).style.display = 'none';
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      if (event.target == document.getElementById('modal')) {
+        closeModal();
+      }
     }
   </script>
 </body>
