@@ -166,6 +166,54 @@ background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:
   });
 </script>
 
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Replace with your Firebase project configuration
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+<script>
+  document.getElementById('booking-form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent page refresh
+
+    const name = document.getElementById('name').value;
+    const contact = document.getElementById('contact').value;
+    const date = document.getElementById('date').value;
+    const guests = parseInt(document.getElementById('guests').value);
+
+    // Save to Firestore
+    db.collection("reservations").add({
+      name: name,
+      contact: contact,
+      date: date,
+      guests: guests,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(() => {
+      alert("Reservation submitted successfully!");
+      document.getElementById('booking-form').reset();
+      closeForm();
+    })
+    .catch((error) => {
+      console.error("Error saving reservation: ", error);
+      alert("Something went wrong. Please try again.");
+    });
+  });
+</script>
+
 </body>
 
 </html>
