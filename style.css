@@ -1,15 +1,10 @@
 /* General Styles  */
 :root {
-    /* Color Palette  */
-    --primary-color: #e67e22;
-    /* A warm orange  */
+    --primary-color: #e67e22;           /* A warm orange */
     --primary-dark: #d35400;
-    --secondary-color: #f4f4f4;
-    /* Light gray  */
+    --secondary-color: #f4f4f4;         /* Light gray */
     --text-color: #333;
-    --accent-color: #2c3e50;
-    /* Dark blue-gray  */
-    /* Font  */
+    --accent-color: #2c3e50;            /* Dark blue-gray */
     --main-font: "Montserrat", sans-serif;
     --secondary-font: "Open Sans", sans-serif;
 }
@@ -20,14 +15,10 @@ body {
     background-color: var(--secondary-color);
     color: var(--text-color);
     line-height: 1.6;
-    /* Better default line height  */
     -webkit-font-smoothing: antialiased;
-    /* Smoother fonts on macOS  */
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
     font-family: var(--main-font);
     font-weight: 700;
     color: var(--accent-color);
@@ -77,7 +68,6 @@ header {
 .nav-links {
     display: flex;
     list-style: none;
-    /* Remove bullets  */
     gap: 1.5em;
 }
 
@@ -92,9 +82,9 @@ header {
     color: var(--accent-color);
 }
 
-/* Hero Section  */
+/* ✅ Hero Section with Local Image and Overlay */
 #hero {
-    background: url('https://source.unsplash.com/1600x900/?restaurant,dining') center/cover no-repeat;
+    background: url('images/82bee52c-409e-4322-8a52-8fc0ff4d8149.png') center/cover no-repeat;
     height: 80vh;
     display: flex;
     align-items: center;
@@ -102,18 +92,15 @@ header {
     text-align: center;
     color: white;
     position: relative;
-    /* For overlay  */
+    overflow: hidden;
 }
 
 #hero::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    /* Darker overlay  */
     z-index: 1;
 }
 
@@ -151,7 +138,7 @@ header {
     background-color: var(--primary-dark);
 }
 
-/* About Section  */
+/* About Section */
 #about {
     padding: 4em 2em;
     background-color: white;
@@ -176,7 +163,7 @@ header {
     padding: 1em;
 }
 
-/* Footer (Add to HTML)  */
+/* Footer */
 footer {
     background-color: var(--accent-color);
     color: white;
@@ -189,9 +176,8 @@ footer a {
     color: white;
 }
 
-/* Media Queries (Responsive Design)  */
+/* Responsive Design */
 @media (max-width: 768px) {
-    /* For tablets  */
     .navbar {
         flex-direction: column;
         align-items: flex-start;
@@ -218,7 +204,6 @@ footer a {
 }
 
 @media (max-width: 480px) {
-    /* For mobile phones  */
     #hero h1 {
         font-size: 2em;
     }
