@@ -84,7 +84,7 @@ header {
 
 /* ✅ Hero Section with Local Image and Overlay */
 #hero {
-    background: url('images/82bee52c-409e-4322-8a52-8fc0ff4d8149.png') center/cover no-repeat;
+    background: <img src="images/background-image.png" /> center/cover no-repeat;
     height: 80vh;
     display: flex;
     align-items: center;
