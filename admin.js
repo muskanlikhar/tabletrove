@@ -13,13 +13,13 @@ console.log("Admin panel script loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
   const firebaseConfig = {
-    apiKey: "AIzaSyB66c4IOFIYugi-vwboYk1GqPOEQrI7mXA",
-    authDomain: "tabletrove-5d8a2.firebaseapp.com",
-    projectId: "tabletrove-5d8a2",
-    storageBucket: "tabletrove-5d8a2.appspot.com",
-    messagingSenderId: "60366621653",
-    appId: "1:60366621653:web:01dcff1f23e71640f10b5c"
-  };
+  apiKey: "AIzaSyC_OKwzsTJVBO9ffnsR47sKi3UjA57eu64",
+  authDomain: "tabletrove-80cb0.firebaseapp.com",
+  projectId: "tabletrove-80cb0",
+  storageBucket: "tabletrove-80cb0.appspot.com",
+  messagingSenderId: "124529385870",
+  appId: "1:124529385870:web:d821d0a3c6649e7edd04df"
+};
 
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
