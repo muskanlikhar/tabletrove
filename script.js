@@ -11,43 +11,36 @@ const firebaseConfig = {
   appId: "1:124529385870:web:d821d0a3c6649e7edd04df"
 };
 
-// ✅ Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ✅ Form Handling
 const form = document.getElementById("booking-form");
 const bookingForm = document.getElementById("bookingForm");
 
 function closeForm() {
-  if (bookingForm) {
-    bookingForm.style.display = "none";
+  bookingForm.style.display = "none";
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value;
+  const contact = document.getElementById("contact").value;
+  const date = document.getElementById("date").value;
+  const guests = document.getElementById("guests").value;
+
+  try {
+    await addDoc(collection(db, "bookings"), {
+      name,
+      contact,
+      date,
+      guests,
+      status: "pending",
+      timestamp: serverTimestamp()
+    });
+    alert("✅ Booking submitted successfully!");
+    form.reset();
+    closeForm();
+  } catch (error) {
+    alert("❌ Error adding reservation: " + error.message);
   }
-}
-
-if (form) {
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const contact = document.getElementById("contact").value;
-    const date = document.getElementById("date").value;
-    const guests = document.getElementById("guests").value;
-
-    try {
-  await addDoc(collection(db, "bookings"), {
-  name,
-  contact,
-  date,
-  guests,
-  status: "pending"
-    timestamp: serverTimestamp()
 });
-      alert("✅ Booking submitted successfully!");
-      form.reset();
-      closeForm();
-    } catch (error) {
-      alert("❌ Error saving booking: " + error.message);
-    }
-  });
-}
