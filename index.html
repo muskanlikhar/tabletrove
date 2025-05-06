@@ -199,12 +199,12 @@ background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
       alert("Reservation submitted successfully!");
-      document.getElementById("reservation-form").reset();
+      document.getElementById("booking-form").reset();
     }).catch((error) => {
       alert("Error: " + error.message);
     });
   });
-</script>
+<script type="module" src="script.js"></script>
 
 </body>
 </html>
