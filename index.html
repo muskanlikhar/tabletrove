@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TableTrove</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
     body { font-family: 'Open Sans', sans-serif; margin: 0; background: #fff; color: #333; }
     header { background: #e67e22; padding: 1rem; }
@@ -13,11 +14,9 @@
     .logo { font-size: 1.5rem; font-weight: bold; color: #fff; }
     .nav-links { list-style: none; display: flex; gap: 1.5rem; }
     .nav-links a { color: #fff; text-decoration: none; font-weight: 600; }
-
-    /* ✅ Fixed Hero with background image and dark overlay */
     #hero {
       position: relative;
-      background: <img src="images/background-image.png" /> center/cover no-repeat;
+      background: url('images/background-image.png') center/cover no-repeat;
       color: #fff;
       padding: 100px 20px;
       text-align: center;
@@ -27,18 +26,13 @@
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.5); /* dark overlay */
+      background: rgba(0, 0, 0, 0.5);
       z-index: 1;
     }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-
+    .hero-content { position: relative; z-index: 2; }
     .hero-content h1 { font-size: 3rem; margin-bottom: 0.5rem; }
     .hero-content .tagline { font-size: 1.25rem; margin-bottom: 1rem; }
     .hero-content button { padding: 0.75rem 1.5rem; font-size: 1rem; background: #e67e22; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
-
     #about, #featured, #contact { padding: 60px 20px; max-width: 1100px; margin: auto; }
     .about-container, .contact-container { display: flex; flex-wrap: wrap; gap: 2rem; }
     .about-image img, .contact-image img { width: 100%; border-radius: 12px; }
@@ -47,11 +41,8 @@
     .menu-item { background: #f4f4f4; padding: 1rem; border-radius: 10px; text-align: center; }
     .menu-item img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; }
     .menu-item h4 { margin: 0.75rem 0 0.5rem; }
-
     footer { text-align: center; padding: 1rem; background: #333; color: #fff; }
   </style>
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 </head>
 
 <body>
@@ -80,25 +71,13 @@
 <section id="about" data-aos="fade-up" data-aos-duration="1500">
   <div class="about-container">
     <div class="about-image">
-      <img src="images/elegant-dining-area.jpg" alt="Elegant Dining Area" /> <img size=700 />
+      <img src="images/elegant-dining-area.jpg" alt="Elegant Dining Area" />
     </div>
     <div class="about-text">
       <h2>About Us</h2>
-      <p>At Table Trove, 
-        we're more than just a restaurant – we're a celebration of culinary craftsmanship and a passion for creating 
-        exceptional dining experiences. Our chefs pour their heart and soul into every dish, using the freshest, locally sourced 
-        ingredients whenever possible to bring you a menu that is both comforting and inspiring. We believe in the power of a thoughtfully 
-        prepared meal to elevate your day, whether you're joining us for a casual lunch, a special celebration, or a cozy dinner.
-        Our team is dedicated to providing warm and attentive service, ensuring that your time with us is always a treasure.</p>
-    <p>Founded with passion, we take pride in sourcing the freshest ingredients and offering warm hospitality to our guests.</p>
-       <h2>Our Journey</h2>
-
-      <p>The story of Table Trove is one of dedication to the art of food and a desire to share that passion with our community. 
-          From the initial spark of an idea to the bustling restaurant you see today, our journey has been driven by a commitment 
-          to quality and a love for bringing people together through food. We meticulously sought out the finest ingredients, 
-          honed our culinary skills, and created an atmosphere where everyone feels welcome. Every step of the way, our focus
-          has remained on crafting dishes that delight the senses and creating a space where memories are made. We're incredibly
-          grateful for the support we've received and look forward to many more years of sharing our culinary treasures with you.</p></p>
+      <p>At Table Trove, we're more than just a restaurant – we're a celebration of culinary craftsmanship and a passion for creating exceptional dining experiences.</p>
+      <h2>Our Journey</h2>
+      <p>The story of Table Trove is one of dedication to the art of food and a desire to share that passion with our community.</p>
     </div>
   </div>
 </section>
@@ -122,7 +101,7 @@
       <p>Layered pasta with vegetables, cheese, and rich tomato sauce.</p>
     </div>
     <div class="menu-item">
-       <img src="images/grilled-salmon.jpg" alt="Grilled Salmon" />
+      <img src="images/grilled-salmon.jpg" alt="Grilled Salmon" />
       <h4>Grilled Salmon</h4>
       <p>Salmon fillet grilled with herbs and served with lemon butter.</p>
     </div>
@@ -131,15 +110,15 @@
 
 <section id="contact" data-aos="fade-up" data-aos-duration="1500">
   <h2 style="text-align:center;">Contact Us</h2>
-  <div class="contact-container" style="margin-top: 2rem;">
+  <div class="contact-container">
     <div class="contact-text">
       <p><strong>Address:</strong> B42 Scheme No. 78, Indore, 452010</p>
       <p><strong>Phone:</strong> +91-7974912322</p>
       <p><strong>Email:</strong> contact@tabletrove.com</p>
-      <p><strong>We are here to serve you round the clock </strong></p>
+      <p><strong>We are here to serve you round the clock</strong></p>
     </div>
     <div class="contact-image">
-      <img src="images/contact-us.jpg" alt="Contact us">
+      <img src="images/contact-us.jpg" alt="Contact us" />
     </div>
   </div>
 </section>
@@ -148,11 +127,7 @@
   &copy; 2025 TableTrove. All rights reserved.
 </footer>
 
-
-<script>
-  AOS.init({ once: true });
-</script>
-
+<!-- Modal Reservation Form -->
 <div id="bookingForm" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
 background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:1000;">
   <form id="booking-form" style="background:white; padding:2em; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.3); width:90%; max-width:400px;">
@@ -166,13 +141,14 @@ background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:
   </form>
 </div>
 
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
+  AOS.init({ once: true });
+
   const bookingModal = document.getElementById('bookingForm');
-  const openModalButtons = document.querySelectorAll('#reserve-btn, #book-btn');
-  openModalButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      bookingModal.style.display = 'flex';
-    });
+  document.getElementById('reserve-btn').addEventListener('click', () => {
+    bookingModal.style.display = 'flex';
   });
 
   function closeForm() {
@@ -185,13 +161,8 @@ background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:
     }
   });
 </script>
-<script>
-  const firebaseConfig = { ... };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-</script>
-<script>
-  <!-- ✅ Firebase v9 Modular SDK Setup -->
+
+<!-- Firebase Modular SDK -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
   import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
@@ -208,7 +179,6 @@ background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // Reservation Form Submission
   document.getElementById('booking-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -236,10 +206,5 @@ background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:
   });
 </script>
 
-    });
-  });
-</script>
-
 </body>
-
 </html>
