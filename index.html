@@ -133,13 +133,13 @@
   <h2 style="text-align:center;">Contact Us</h2>
   <div class="contact-container" style="margin-top: 2rem;">
     <div class="contact-text">
-      <p><strong>Address:</strong> 123 Gourmet Street, Food City, FC 456789</p>
-      <p><strong>Phone:</strong> +91-9876543210</p>
-      <p><strong>Email:</strong> reservations@tabletrove.com</p>
-      <p>Open Daily: 11:00 AM – 11:00 PM</p>
+      <p><strong>Address:</strong> B42 Scheme No. 78, Indore, 452010</p>
+      <p><strong>Phone:</strong> +91-7974912322</p>
+      <p><strong>Email:</strong> contact@tabletrove.com</p>
+      <p><strong>We are here to serve you round the clock </strong></p>
     </div>
     <div class="contact-image">
-      <img src="https://source.unsplash.com/600x400/?restaurant,contact" alt="Contact us">
+      <img src="images/contact-us.jpg" alt="Contact us">
     </div>
   </div>
 </section>
@@ -185,13 +185,17 @@ background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:
     }
   });
 </script>
-
-  <!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-
 <script>
-  // Replace with your Firebase project configuration
+  const firebaseConfig = { ... };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+<script>
+  <!-- ✅ Firebase v9 Modular SDK Setup -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
   const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
@@ -201,35 +205,37 @@ background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:
     appId: "YOUR_APP_ID"
   };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-</script>
-<script>
-  document.getElementById('booking-form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent page refresh
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Reservation Form Submission
+  document.getElementById('booking-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
 
     const name = document.getElementById('name').value;
     const contact = document.getElementById('contact').value;
     const date = document.getElementById('date').value;
     const guests = parseInt(document.getElementById('guests').value);
 
-    // Save to Firestore
-    db.collection("reservations").add({
-      name: name,
-      contact: contact,
-      date: date,
-      guests: guests,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    .then(() => {
+    try {
+      await addDoc(collection(db, "reservations"), {
+        name,
+        contact,
+        date,
+        guests,
+        timestamp: serverTimestamp()
+      });
+
       alert("Reservation submitted successfully!");
       document.getElementById('booking-form').reset();
       closeForm();
-    })
-    .catch((error) => {
-      console.error("Error saving reservation: ", error);
+    } catch (error) {
+      console.error("Error adding reservation: ", error);
       alert("Something went wrong. Please try again.");
+    }
+  });
+</script>
+
     });
   });
 </script>
