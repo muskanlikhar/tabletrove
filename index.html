@@ -162,48 +162,47 @@ background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:
   });
 </script>
 
-<!-- Firebase Modular SDK -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
-  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+<!-- Firebase Scripts -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
+<script>
   const firebaseConfig = {
-    apiKey: "AIzaSyC63fuVzX0fcvdAw6gCcZ8sv6CemmhLBLE",
-    authDomain: "tabletrove1.firebaseapp.com",
-    projectId: "tabletrove1",
-    storageBucket: "tabletrove1.appspot.com",
-    messagingSenderId: "389311630011",
-    appId: "1:389311630011:web:5ec4dddbbe194f5070779e"
+    apiKey: "AIzaSyC_OKwzsTJVBO9ffnsR47sKi3UjA57eu64",
+    authDomain: "tabletrove-80cb0.firebaseapp.com",
+    projectId: "tabletrove-80cb0",
+    storageBucket: "tabletrove-80cb0.appspot.com",
+    messagingSenderId: "124529385870",
+    appId: "1:124529385870:web:d821d0a3c6649e7edd04df"
   };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  
-  document.getElementById('booking-form').addEventListener('submit', async function (e) {
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  document.getElementById("reservation-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const contact = document.getElementById('contact').value;
-    const date = document.getElementById('date').value;
-    const guests = parseInt(document.getElementById('guests').value);
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const guests = document.getElementById("guests").value;
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
 
-    try {
-      await addDoc(collection(db, "reservations"), {
-        name,
-        contact,
-        date,
-        guests,
-        timestamp: serverTimestamp()
-      });
-
+    db.collection("bookings").add({
+      name,
+      email,
+      phone,
+      guests,
+      date,
+      time,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
       alert("Reservation submitted successfully!");
-      document.getElementById('booking-form').reset();
-      closeForm();
-    } catch (error) {
-      console.error("Error adding reservation: ", error);
-      alert("Something went wrong. Please try again.");
-    }
+      document.getElementById("reservation-form").reset();
+    }).catch((error) => {
+      alert("Error: " + error.message);
+    });
   });
 </script>
 
