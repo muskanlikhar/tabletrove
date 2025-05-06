@@ -1,4 +1,14 @@
 // admin.js
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    // Not logged in? Redirect to login page
+    window.location.href = "admin-login.html";
+  }
+});
+
 console.log("Admin panel script loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
