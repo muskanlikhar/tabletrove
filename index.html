@@ -164,21 +164,21 @@ background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:
 
 <!-- Firebase Modular SDK -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
   const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyC63fuVzX0fcvdAw6gCcZ8sv6CemmhLBLE",
+    authDomain: "tabletrove1.firebaseapp.com",
+    projectId: "tabletrove1",
+    storageBucket: "tabletrove1.appspot.com",
+    messagingSenderId: "389311630011",
+    appId: "1:389311630011:web:5ec4dddbbe194f5070779e"
   };
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
-
+  
   document.getElementById('booking-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
