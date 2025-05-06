@@ -35,12 +35,13 @@ if (form) {
     const guests = document.getElementById("guests").value;
 
     try {
-     await addDoc(collection(db, "bookings"), {
+  await addDoc(collection(db, "bookings"), {
   name,
   contact,
   date,
   guests,
   status: "pending"
+    timestamp: serverTimestamp()
 });
       alert("✅ Booking submitted successfully!");
       form.reset();
