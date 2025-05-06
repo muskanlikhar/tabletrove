@@ -82,6 +82,9 @@
       display: none;
     }
   </style>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 </head>
 <body>
   <!-- Login Box -->
@@ -126,12 +129,8 @@
     </table>
   </div>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-
   <script>
-    // Unlock the body
+    // Unlock the body after loading
     document.documentElement.style.display = 'block';
     document.body.style.display = 'block';
 
@@ -194,7 +193,7 @@
               <td>${data.contact}</td>
               <td>${data.date}</td>
               <td>${data.guests}</td>
-              <td class="${statusClass}">${data.status}</td>
+              <td class="${statusClass}">${data.status || "pending"}</td>
               <td>
                 <button class="btn confirm" onclick="updateStatus('${id}', 'confirmed')">Confirm</button>
                 <button class="btn reject" onclick="updateStatus('${id}', 'rejected')">Reject</button>
@@ -235,6 +234,5 @@
       };
     }
   </script>
-  <script src="admin.js"></script>
 </body>
 </html>
